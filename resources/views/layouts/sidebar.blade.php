@@ -20,13 +20,13 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('home')}}">
+            <a class="nav-link" href="{{route('home')}}" id="home">
                 <i class="menu-icon mdi mdi-television"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('user.index')}}">
+            <a class="nav-link" href="{{route('user.index')}}" id="user">
                 <i class="menu-icon mdi mdi-account"></i>
                 <span class="menu-title">Data User</span>
             </a>
@@ -46,10 +46,10 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('jenissapi.index')}}">Jenis Sapi</a>
+                        <a class="nav-link" href="{{route('jenissapi.index')}}" id="jenissapi">Jenis Sapi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Data Sapi</a>
+                        <a class="nav-link" href="{{route('sapi.index')}}" id="sapi">Data Sapi</a>
                     </li>
                 </ul>
             </div>
