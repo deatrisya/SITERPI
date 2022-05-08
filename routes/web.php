@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JenisSapiController;
+use App\Http\Controllers\SapiController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +27,6 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('user', UsersController::class);
+    Route::resource('jenissapi',JenisSapiController::class);
+    Route::resource('sapi',SapiController::class);
 });
