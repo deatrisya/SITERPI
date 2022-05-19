@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jenis_Sapi;
 use App\Models\Sapi;
+use App\Models\Transaksi;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -22,9 +23,8 @@ class SapiController extends Controller
             $query
             ->where('NIS','like',"%{$request->keyword}%")
             ->orWhere('tanggal_lahir','like',"%{$request->keyword}%")
-            ->orWhere('umur','like',"%{$request->keyword}%")
-            ->orWhere('status_umur','like',"%{$request->keyword}%")
             ->orWhere('jenis_kelamin','like',"%{$request->keyword}%")
+            ->orWhere('status','like',"%{$request->keyword}%")
             ->orWhere('bobot','like',"%{$request->keyword}%")
             ->orWhere('harga','like',"%{$request->keyword}%")
             ->orWhere('kondisi','like',"%{$request->keyword}%")
@@ -60,29 +60,43 @@ class SapiController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request -> validate([
-            'jenissapi_id' => 'required',
-            'nis' => 'required|string|max:10',
-            'tanggal_lahir' => 'required|date',
-            'status' => 'required',
-            'jenis_kelamin' => 'required',
-            'bobot' => 'required|numeric',
-            'harga' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'kondisi' => 'required',
-            'keterangan' => 'required'
-        ]);
+        $request -> validate(
+            [
+                'jenissapi_id' => 'required',
+                'nis' => 'required|string|max:10',
+                'tanggal_lahir' => 'required|date',
+                'jenis_kelamin' => 'required',
+                'status_asal' => 'required',
+                'bobot' => 'required|numeric',
+                'harga' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                'kondisi' => 'required',
+
+            ]
+    );
 
         $sapi = new Sapi;
         $sapi -> jenissapi_id = $request->jenissapi_id;
         $sapi -> nis = $request->nis;
         $sapi -> tanggal_lahir = $request->tanggal_lahir;
-        $sapi -> status = $request->status;
+        $sapi -> status = 'Belum Terjual';
         $sapi -> jenis_kelamin = $request->jenis_kelamin;
+        $sapi -> status_asal = $request->status_asal;
         $sapi -> bobot = $request->bobot;
         $sapi -> harga = $request->harga;
         $sapi -> kondisi = $request->kondisi;
         $sapi -> keterangan = $request->keterangan;
-        $sapi->save();
+
+        if ($sapi -> status_asal == 'Beli') {
+            $sapi->save();
+
+            $transaksi = new Transaksi;
+            $transaksi -> sapi_id = $sapi -> id ;
+            $transaksi -> status_transaksi = 'Beli';
+            $transaksi -> harga = $sapi ->harga;
+            $transaksi -> save();
+        } else {
+            $sapi -> save();
+        }
 
         Alert::success('Success','Sapi Berhasil Ditambahkan');
         return redirect()->route('sapi.index');
@@ -129,8 +143,9 @@ class SapiController extends Controller
             'jenissapi_id' => 'required',
             'nis' => 'required|string|max:10',
             'tanggal_lahir' => 'required|date',
-            'status' => 'required',
+            // 'status' => 'required',
             'jenis_kelamin' => 'required',
+            // 'status_asal' => 'required',
             'bobot' => 'required|numeric',
             'harga' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'kondisi' => 'required',
@@ -140,7 +155,6 @@ class SapiController extends Controller
         $sapi -> jenissapi_id = $request->jenissapi_id;
         $sapi -> nis = $request->nis;
         $sapi -> tanggal_lahir = $request->tanggal_lahir;
-        $sapi -> status = $request->status;
         $sapi -> jenis_kelamin = $request->jenis_kelamin;
         $sapi -> bobot = $request->bobot;
         $sapi -> harga = $request->harga;
