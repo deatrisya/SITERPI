@@ -91,7 +91,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('transaksi.index')}}">
                 <i class="menu-icon mdi mdi-clipboard-text"></i>
                 <span class="menu-title">Transaksi</span>
             </a>
