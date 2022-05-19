@@ -22,6 +22,7 @@ class Sapi extends Model
         'tanggal_lahir',
         'status',
         'jenis_kelamin',
+        'status_asal',
         'bobot',
         'harga',
         'kondisi',
@@ -57,5 +58,9 @@ class Sapi extends Model
         }
 
         return $badge;
+    }
+
+    public function transaksi(){
+        return $this->hasMany(transaksi::class);
     }
 }
