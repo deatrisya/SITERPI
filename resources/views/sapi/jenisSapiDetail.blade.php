@@ -7,8 +7,6 @@
         <div class="card ">
             <h5 class="card-header bg-orange text-white">Edit Jenis Sapi</h5>
             <div class="card-body">
-              <form method="POST" action="{{route('jenissapi.update',$jenis->id)}}">
-                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -19,7 +17,6 @@
                     <div class="col-md-6"></div>
                 </div>
                 <a class="btn btn-secondary" href="{{ route('jenissapi.index')}}">Back</a>
-            </form>
             </div>
           </div>
     </div>
