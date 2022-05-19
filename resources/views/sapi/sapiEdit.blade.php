@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{$sapi->keterangan}}</textarea>
+                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3" disabled>{{$sapi->keterangan}}</textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -80,14 +80,21 @@
                             <input type="number" class="form-control" id="harga" name="harga" required value="{{$sapi->harga}}">
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleInputPassword1">Status</label>
                             <select class="form-control" id="status" name="status" required>
                                 <option value="Terjual" @if ($sapi->status=="Terjual")selected @endif>Terjual</option>
                                 <option value="Belum Terjual"  @if ($sapi->status=="Belum Terjual")selected @endif>Belum Terjual</option>
 
                             </select>
-                        </div>
+                        </div> --}}
+                        {{-- <div class="form-group">
+                            <label for="exampleInputPassword1">Status Asal</label>
+                            <select class="form-control" id="status_asal" name="status_asal" required>
+                                <option value="Beli" @if ($sapi->status_asal = "Beli")selected @endif>Beli</option>
+                                <option value="Ternak" @if ($sapi->status_asal = "Ternak")selected @endif>Ternak</option>
+                            </select>
+                        </div> --}}
                     </div>
                 </div>
                 <button type="submit" class="btn btn-orange">Submit</button>
@@ -97,4 +104,18 @@
          </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(function(){
+        $("#kondisi").change(function () {
+            if ($(this).val() == 'Sakit') {
+                $("#keterangan").removeAttr("disabled");
+                $("#keterangan").focus();
+            } else {
+                $("#keterangan").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
 @endsection

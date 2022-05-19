@@ -29,14 +29,23 @@
                                     <option value="{{$data->id}}">{{$data->jenis_sapi}}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('jenissapi_id'))
+                             <div class="error">{{ $errors->first('jenissapi_id') }}</div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">NIS</label>
-                            <input type="text" class="form-control" id="nis" name="nis" required value="{{old('nis')}}">
+                            <input type="text" class="form-control" id="nis" name="nis" required value="{{old('nis')}}" placeholder="S0001">
+                            @if ($errors->has('nis'))
+                                <div class="error">{{ $errors->first('nis') }}</div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required value="{{old('tanggal_lahir')}}">
+                            @if ($errors->has('tanggal_lahir'))
+                            <div class="error">{{ $errors->first('tanggal_lahir') }}</div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Kondisi</label>
@@ -44,10 +53,16 @@
                                 <option value="Sehat">Sehat</option>
                                 <option value="Sakit">Sakit</option>
                             </select>
+                            @if ($errors->has('kondisi'))
+                            <div class="error">{{ $errors->first('kondisi') }}</div>
+                        @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{old('keterangan')}}</textarea>
+                            <textarea class="form-control" id="keterangan" name="keterangan" rows="3" disabled>{{old('keterangan')}} </textarea>
+                            @if ($errors->has('keterangan'))
+                            <div class="error">{{ $errors->first('keterangan') }}</div>
+                        @endif
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -73,19 +88,26 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Bobot</label>
                             <input type="number" class="form-control" id="bobot" name="bobot" required value="{{old('bobot')}}">
+                            @if ($errors->has('bobot'))
+                            <div class="error">{{ $errors->first('bobot') }}</div>
+                        @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Harga</label>
                             <input type="number" class="form-control" id="harga" name="harga" required value="{{old('harga')}}">
+                            @if ($errors->has('harga'))
+                            <div class="error">{{ $errors->first('harga') }}</div>
+                        @endif
                         </div>
-
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Status</label>
-                            <select class="form-control" id="status" name="status" required>
-                                <option value="Terjual">Terjual</option>
-                                <option value="Belum Terjual">Belum Terjual</option>
-
+                            <label for="exampleInputPassword1">Status Asal</label>
+                            <select class="form-control" id="status_asal" name="status_asal" required>
+                                <option value="Beli">Beli</option>
+                                <option value="Ternak">Ternak</option>
                             </select>
+                            @if ($errors->has('status_asal'))
+                            <div class="error">{{ $errors->first('status_asal') }}</div>
+                        @endif
                         </div>
                     </div>
                 </div>
@@ -96,4 +118,18 @@
          </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(function(){
+        $("#kondisi").change(function () {
+            if ($(this).val() == 'Sakit') {
+                $("#keterangan").removeAttr("disabled");
+                $("#keterangan").focus();
+            } else {
+                $("#keterangan").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
 @endsection

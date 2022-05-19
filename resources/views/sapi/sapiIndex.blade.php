@@ -47,6 +47,7 @@
                             <th scope="col">Status Umur</th>
                             <th scope="col">Status </th>
                             <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Status Asal</th>
                             <th scope="col">Bobot</th>
                             <th scope="col">Harga</th>
                             <th scope="col">Kondisi</th>
@@ -65,6 +66,7 @@
                             <td>{{$data->status_umur}}</td>
                             <td>{!! $data->statussapi !!}</td>
                             <td>{{$data->jenis_kelamin}}</td>
+                            <td>{{$data->status_asal}}</td>
                             <td>{{$data->bobot}} Kg</td>
                             <td>{{$data->harga}}</td>
                             <td>{{$data->kondisi}}</td>
