@@ -17,10 +17,8 @@ class CreateSapisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('jenissapi_id')->nullable();
             $table->foreign('jenissapi_id')->references('id')->on('jenis_sapis');
-            $table->string('NIS',10);
+            $table->string('nis',10);
             $table->date('tanggal_lahir');
-            $table->integer('umur');
-            $table->enum('status_umur',['Anak','Muda','Dewasa']);
             $table->enum('status',['Terjual','Belum Terjual']);
             $table->enum('jenis_kelamin',['Jantan','Betina']);
             $table->double('bobot');
