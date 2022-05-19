@@ -17,6 +17,9 @@ class JenisSapiSeeder extends Seeder
         $dataItem = [
             [
                 'jenis_sapi' => 'Limousin'
+            ],
+            [
+                'jenis_sapi' => 'Madura'
             ]
         ];
         DB::table('jenis_sapis')->insert($dataItem);
