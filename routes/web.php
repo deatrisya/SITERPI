@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisSapiController;
 use App\Http\Controllers\SapiController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('user', UsersController::class);
     Route::resource('jenissapi',JenisSapiController::class);
     Route::resource('sapi',SapiController::class);
+    Route::resource('transaksi',TransaksiController::class);
+    Route::get('getTransaksi/{id}',[TransaksiController::class,'getPrice']);
 });
