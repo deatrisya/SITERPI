@@ -19,10 +19,10 @@ class PakanController extends Controller
         $pakan = Pakan::when($request->keyword, function($query) use ($request){
             $query
             ->where('jenis_pakan','like',"%{$request->keyword}%");
-        })->orderBy('jenis_obat')->paginate($pagination);
+        })->orderBy('jenis_pakan')->paginate($pagination);
 
         $pakan->appends($request->only('keyword'));
-        return view('obat.jenisPakanIndex',compact('jenis'))
+        return view('pakan.jenisPakanIndex',compact('pakan'))
             ->with('i',(request()->input('page',1)-1)*$pagination);
     }
 
@@ -33,7 +33,7 @@ class PakanController extends Controller
      */
     public function create()
     {
-        return view('obat.jenisPakanCreate');
+        return view('pakan.jenisPakanCreate');
     }
 
     /**
@@ -45,7 +45,7 @@ class PakanController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'jenis_obat' => 'required|regex:/^[\pL\s\-]+$/u'
+            'jenis_pakan' => 'required|regex:/^[\pL\s\-]+$/u'
         ]);
 
         Pakan::create($request->all());
@@ -63,7 +63,7 @@ class PakanController extends Controller
     public function show($id)
     {
         $pakan = Pakan::find($id);
-        return view('pakan.jenisPakantDetail', compact('pakan'));
+        return view('pakan.jenisPakanDetail', compact('pakan'));
     }
 
     /**
