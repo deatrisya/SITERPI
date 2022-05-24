@@ -64,10 +64,10 @@
             <div class="collapse" id="ui-basic1">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Jenis Pakan</a>
+                        <a class="nav-link" href="{{route('jenispakan.index')}}" id="jenispakan">Jenis Pakan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Riwayat Pakan</a>
+                        <a class="nav-link" href="{{route('riwayatpakan.index')}}" id="riwayatpakan">Riwayat Pakan</a>
                     </li>
                 </ul>
             </div>
