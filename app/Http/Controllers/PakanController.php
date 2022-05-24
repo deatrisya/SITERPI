@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pakan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PakanController extends Controller
 {
@@ -12,9 +13,17 @@ class PakanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $pagination = 5;
+        $pakan = Pakan::when($request->keyword, function($query) use ($request){
+            $query
+            ->where('jenis_pakan','like',"%{$request->keyword}%");
+        })->orderBy('jenis_obat')->paginate($pagination);
+
+        $pakan->appends($request->only('keyword'));
+        return view('obat.jenisPakanIndex',compact('jenis'))
+            ->with('i',(request()->input('page',1)-1)*$pagination);
     }
 
     /**
@@ -24,7 +33,7 @@ class PakanController extends Controller
      */
     public function create()
     {
-        //
+        return view('obat.jenisPakanCreate');
     }
 
     /**
@@ -35,7 +44,14 @@ class PakanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'jenis_obat' => 'required|regex:/^[\pL\s\-]+$/u'
+        ]);
+
+        Pakan::create($request->all());
+
+        Alert::success('Success','Data Pakan Berhasil Ditambahkan');
+        return redirect()->route('jenispakan.index');
     }
 
     /**
@@ -44,9 +60,10 @@ class PakanController extends Controller
      * @param  \App\Models\Pakan  $pakan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pakan $pakan)
+    public function show($id)
     {
-        //
+        $pakan = Pakan::find($id);
+        return view('pakan.jenisPakantDetail', compact('pakan'));
     }
 
     /**
@@ -55,9 +72,10 @@ class PakanController extends Controller
      * @param  \App\Models\Pakan  $pakan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pakan $pakan)
+    public function edit($id)
     {
-        //
+        $pakan = Pakan::find($id);
+        return view('pakan.jenisPakanEdit', compact('pakan'));
     }
 
     /**
@@ -67,9 +85,15 @@ class PakanController extends Controller
      * @param  \App\Models\Pakan  $pakan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pakan $pakan)
+    public function update(Request $request, $id)
     {
-        //
+        $request -> validate([
+            'jenis_pakan' => 'required|regex:/^[\pL\s\-]+$/u'
+        ]);
+
+        Pakan::find($id)->update($request->all());
+        Alert::success('Success','Data Pakan Berhasil Diupdate');
+        return redirect()->route('jenispakan.index');
     }
 
     /**
@@ -78,8 +102,10 @@ class PakanController extends Controller
      * @param  \App\Models\Pakan  $pakan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pakan $pakan)
+    public function destroy($id)
     {
-        //
+        Pakan::find($id)->delete();
+        Alert::success('Success','Data Pakan Berhasil Dihapus');
+        return redirect()->route('jenispakan.index');
     }
 }
