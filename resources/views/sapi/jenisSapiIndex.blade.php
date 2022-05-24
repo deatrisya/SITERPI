@@ -83,6 +83,7 @@
                     </div>
                 </div>
             </div>
+            <center><a class="btn btn-danger" href="{{ route('jenisSapi_pdf') }}"> Cetak Ke PDF</a></center>
         </div>
     </div>
 </div>

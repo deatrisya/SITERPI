@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jenis_Sapi;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 
 class JenisSapiController extends Controller
 {
@@ -108,5 +109,10 @@ class JenisSapiController extends Controller
         Jenis_Sapi::find($id)->delete();
         Alert::success('Success','Jenis Sapi Berhasil Dihapus');
         return redirect()->route('jenissapi.index');
+    }
+    public function cetak_pdf(){
+        $jenisSapi = Jenis_Sapi::all();
+        $pdf = PDF::loadview('sapi.jenisSapi_pdf',['jenisSapi'=>$jenisSapi]);
+        return $pdf->stream();
     }
 }
