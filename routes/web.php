@@ -42,4 +42,5 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('sapi',SapiController::class);
     Route::resource('transaksi',TransaksiController::class);
     Route::get('getTransaksi/{id}',[TransaksiController::class,'getPrice']);
+    Route::get('/jenisSapi/cetak_pdf', [JenisSapiController::class, 'cetak_pdf'])->name('jenisSapi_pdf');;
 });
