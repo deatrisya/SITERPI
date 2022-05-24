@@ -15,6 +15,14 @@ class CreateRiwayatPakansTable extends Migration
     {
         Schema::create('riwayat_pakans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pakan_id')->nullable();
+            $table->foreign('pakan_id')->references('id')->on('pakans');
+            $table->dateTime('tanggal');
+            $table->enum('status',['Masuk','Keluar']);
+            $table->enum('waktu',['Pagi','Siang','Sore']);
+            $table->double('jumlah');
+            $table->double('harga_satuan');
+            $table->double('total_harga');
             $table->timestamps();
         });
     }
