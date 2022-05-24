@@ -1,17 +1,17 @@
 @extends('layouts.adminLayout')
 @section('title')
-    Data Obat | SITERPI
+    Data Pakan | SITERPI
 @endsection
 @section('content')
 <div class="col-lg-12 grid-martin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Data Jenis Obat</h4>
+            <h4 class="card-title">Data Jenis Pakan</h4>
             <div class="button">
                <div class="row">
                    <div class="col-md-6">
                     <div class="float-left">
-                        <a class="btn btn-orange" href="{{route('jenisobat.create')}}">+ Tambah Data</a>
+                        <a class="btn btn-orange" href="{{route('jenispakan.create')}}">+ Tambah Data</a>
                     </div>
                    </div>
                    <div class="col-md-6">
@@ -40,19 +40,19 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nama Obat</th>
+                            <th scope="col">Jenis Pakan</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($jenis as $data)
+                        @foreach ($pakan as $data)
                         <tr>
                             <td scope="row">{{ ++$i}}</td>
-                            <td>{{$data->nama_obat}}</td>
+                            <td>{{$data->jenis_pakan}}</td>
                             <td>
-                                <form action="{{ route('jenisobat.destroy',  $data->id) }}" method="POST">
-                                    <a class="btn btn-icons btn-primary" href="{{route('jenisobat.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
-                                    <a class="btn btn-icons btn-warning" href="{{route('jenisobat.edit', $data->id)}}"><i class="mdi mdi-pencil"></i></a>
+                                <form action="{{ route('jenispakan.destroy',  $data->id) }}" method="POST">
+                                    <a class="btn btn-icons btn-primary" href="{{route('jenispakan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
+                                    <a class="btn btn-icons btn-warning" href="{{route('jenispakan.edit', $data->id)}}"><i class="mdi mdi-pencil"></i></a>
 
                                     @csrf
                                     @method('DELETE')
@@ -70,14 +70,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="detail-data col-md-12">
-                            <p>Page : {!! $jenis->currentPage() !!} <br />
-                                Jumlah Data : {!! $jenis->total() !!} <br />
-                                Data Per Halaman : {!! $jenis->perPage() !!} <br />
+                            <p>Page : {!! $pakan->currentPage() !!} <br />
+                                Jumlah Data : {!! $pakan->total() !!} <br />
+                                Data Per Halaman : {!! $pakan->perPage() !!} <br />
                             </p>
                         </div>
                         <div class="mx-auto">
                             <div class="paginate-button col-md-12">
-                                {!! $jenis->links('vendor.pagination.custom') !!}
+                                {!! $pakan->links('vendor.pagination.custom') !!}
                             </div>
                         </div>
                     </div>
@@ -90,6 +90,6 @@
 
 @section('jo')
     <script>
-        $('#jenisobat').addClass('active');
+        $('#jenispakan').addClass('active');
     </script>
 @endsection
