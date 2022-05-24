@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             TransaksiSeeder::class,
             ObatSeeder::class,
             RiwayatObatSeeder::class,
+            PakanSeeder::class,
+            RiwayatPakanSeeder::class,
         ]);
     }
 }
