@@ -82,10 +82,10 @@
             <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Jenis Obat</a>
+                        <a class="nav-link" href="{{route('jenisobat.index')}}" id="jenisobat">Jenis Obat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Riwayat Obat</a>
+                        <a class="nav-link" href="{{route('riwayatobat.index')}}" id="jenissapi">Riwayat Obat</a>
                     </li>
                 </ul>
             </div>

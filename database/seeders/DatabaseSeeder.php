@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             JenisSapiSeeder::class,
             SapiSeeder::class,
             TransaksiSeeder::class,
+            ObatSeeder::class,
+            RiwayatObatSeeder::class,
         ]);
     }
 }

@@ -37,6 +37,8 @@
     <script src="{{asset('admin/js/dashboard.js')}}"></script>
 
     @yield('js')
+    @yield('jo')
+    @yield('ro')
 </body>
 
 </html>
