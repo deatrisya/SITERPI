@@ -97,7 +97,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('keuangan.index')}}">
                 <i class="menu-icon mdi mdi-cash-multiple"></i>
                 <span class="menu-title">Keuangan</span>
             </a>

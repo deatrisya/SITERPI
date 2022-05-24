@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisSapiController;
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PakanController;
 use App\Http\Controllers\PegawaiController;
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('riwayatpakan',RiwayatPakanController::class);
     Route::resource('sapi',SapiController::class);
     Route::resource('transaksi',TransaksiController::class);
+    Route::resource('keuangan',KeuanganController::class);
     Route::get('getTransaksi/{id}',[TransaksiController::class,'getPrice']);
     Route::get('/jenisSapi/cetak_pdf', [JenisSapiController::class, 'cetak_pdf'])->name('jenisSapi_pdf');;
 });
