@@ -28,6 +28,8 @@
     @yield('js')
     @yield('jo')
     @yield('ro')
+    @yield('jp')
+    @yield('rp')
 </body>
 
 </html>
