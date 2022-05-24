@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisSapiController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SapiController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
@@ -28,6 +29,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('user', UsersController::class);
+    Route::resource('pegawai',PegawaiController::class);
     Route::resource('jenissapi',JenisSapiController::class);
     Route::resource('sapi',SapiController::class);
     Route::resource('transaksi',TransaksiController::class);
