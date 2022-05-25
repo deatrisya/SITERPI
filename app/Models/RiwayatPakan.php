@@ -8,14 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class RiwayatPakan extends Model
 {
     use HasFactory;
-    protected $table ='pakans';
+    protected $table ='riwayat_pakans';
     protected $primaryKey = 'id';
 
     protected $fillable =[
-        'jenis_pakan'
+        'pakan_id',
+        'tanggal',
+        'status',
+        'waktu',
+        'jumlah',
+        'harga_satuan',
+        'total_harga'
     ];
 
-    public function riwayatpakan(){
-        return $this->hasMany(RiwayatPakan::class);
+    public function pakan(){
+        return $this->belongsTo(Pakan::class);
     }
 }
