@@ -61,7 +61,6 @@ class RiwayatPakanController extends Controller
                 'pakan_id' => 'required',
                 'tanggal' => 'required|date',
                 'status' => 'required',
-                'waktu' => 'required',
                 'jumlah' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'total_harga' => 'required|regex:/^\d+(\.\d{1,2})?$/'
@@ -69,14 +68,14 @@ class RiwayatPakanController extends Controller
     );
 
         $riwayatpakan = new RiwayatPakan;
-        $riwayatpakan -> pakan_id = $request->pakan_id;
-        $riwayatpakan -> tanggal = $request->tanggal;
-        $riwayatpakan -> status = $request->status;
-        $riwayatpakan -> waktu = $request->waktu;
-        $riwayatpakan -> jumlah = $request->jumlah;
-        $riwayatpakan -> harga_satuan = $request->harga_satuan;
-        $riwayatpakan -> total_harga = $request->total_harga;
-        $riwayatpakan -> save();
+        $riwayatpakan->pakan_id = $request->pakan_id;
+        $riwayatpakan->tanggal = $request->tanggal;
+        $riwayatpakan->status = $request->status;
+        $riwayatpakan->waktu = $request->waktu;
+        $riwayatpakan->jumlah = $request->jumlah;
+        $riwayatpakan->harga_satuan = $request->harga_satuan;
+        $riwayatpakan->total_harga = $request->total_harga;
+        $riwayatpakan->save();
 
         Alert::success('Success','Riwayat Pakan Berhasil Ditambahkan');
         return redirect()->route('riwayatpakan.index');
@@ -122,7 +121,6 @@ class RiwayatPakanController extends Controller
                 'pakan_id' => 'required',
                 'tanggal' => 'required|date',
                 'status' => 'required',
-                'waktu' => 'required',
                 'jumlah' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'total_harga' => 'required|regex:/^\d+(\.\d{1,2})?$/'
@@ -130,14 +128,14 @@ class RiwayatPakanController extends Controller
     );
 
         $riwayatpakan = RiwayatPakan::findOrFail($id);
-        $riwayatpakan -> pakan_id = $request->pakan_id;
-        $riwayatpakan -> tanggal = $request->tanggal;
-        $riwayatpakan -> status = $request->status;
-        $riwayatpakan -> waktu = $request->waktu;
-        $riwayatpakan -> jumlah = $request->jumlah;
-        $riwayatpakan -> harga_satuan = $request->harga_satuan;
-        $riwayatpakan -> total_harga = $request->total_harga;
-        $riwayatpakan -> save();
+        $riwayatpakan->pakan_id = $request->pakan_id;
+        $riwayatpakan->tanggal = $request->tanggal;
+        $riwayatpakan->status = $request->status;
+        $riwayatpakan->waktu = $request->waktu;
+        $riwayatpakan->jumlah = $request->jumlah;
+        $riwayatpakan->harga_satuan = $request->harga_satuan;
+        $riwayatpakan->total_harga = $request->total_harga;
+        $riwayatpakan->save();
 
         Alert::success('Success','Riwayat Pakan Berhasil Diperbarui');
         return redirect()->route('riwayatpakan.index');
