@@ -1,17 +1,17 @@
 @extends('layouts.adminLayout')
 @section('title')
-    Riwayat Obat | SITERPI
+    Riwayat Pakan | SITERPI
 @endsection
 @section('content')
 <div class="col-lg-12 grid-martin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Riwayat Obat</h4>
+            <h4 class="card-title">Riwayat Pakan</h4>
             <div class="button">
                <div class="row">
                    <div class="col-md-6">
                     <div class="float-left">
-                        <a class="btn btn-orange" href="{{route('riwayatobat.create')}}">+ Tambah Data</a>
+                        <a class="btn btn-orange" href="{{route('riwayatpakan.create')}}">+ Tambah Data</a>
                     </div>
                    </div>
                    <div class="col-md-6">
@@ -40,33 +40,31 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nama Obat</th>
-                            <th scope="col">Isi</th>
+                            <th scope="col">Jenis Pakan</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Jumlah Unit</th>
+                            <th scope="col">Waktu</th>
+                            <th scope="col">Jumlah</th>
                             <th scope="col">Harga Satuan</th>
                             <th scope="col">Total Harga </th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($riwayatobat as $data)
+                        @foreach ($riwayatpakan as $data)
                     <tr>
                         <td scope="row">{{ ++$i}}</td>
-                        <td>{{$data->obat->nama_obat}}</td>
-                        <td>{{$data->isi}} ml</td>
-                        @if ($data->status == 'Masuk')
-                                <td class="text-center"><span class="badge badge-primary">Masuk</span></td>
-                            @else
-                                <td class="text-center"><span class="badge badge-warning">Keluar</span></td>
-                            @endif
-                        <td>{{$data->jumlah_unit}} buah</td>
+                        <td>{{$data->pakan->jenis_pakan}}</td>
+                        <td>{{$data->tanggal}}</td>
+                        <td>{{$data->status}}</td>
+                        <td>{{$data->waktu}}</td>
+                        <td>{{$data->jumlah}} Kg</td>
                         <td>Rp. {{$data->harga_satuan}}</td>
                         <td>Rp. {{$data->total_harga}}</td>
                         <td>
-                            <form action="{{ route('riwayatobat.destroy',  $data->id) }}" method="POST">
-                                <a class="btn btn-icons btn-primary" href="{{route('riwayatobat.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
-                                <a class="btn btn-icons btn-warning" href="{{route('riwayatobat.edit', $data->id)}}"><i class="mdi mdi-pencil"></i></a>
+                            <form action="{{ route('riwayatpakan.destroy',  $data->id) }}" method="POST">
+                                <a class="btn btn-icons btn-primary" href="{{route('riwayatpakan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
+                                <a class="btn btn-icons btn-warning" href="{{route('riwayatpakan.edit', $data->id)}}"><i class="mdi mdi-pencil"></i></a>
                                     @csrf
                                     @method('DELETE')
                                 <button type="submit" class="btn btn-icons btn-danger"><i class="mdi mdi-delete"></i></button>
@@ -82,14 +80,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="detail-data col-md-12">
-                            <p>Page : {!! $riwayatobat->currentPage() !!} <br />
-                                Jumlah Data : {!! $riwayatobat->total() !!} <br />
-                                Data Per Halaman : {!! $riwayatobat->perPage() !!} <br />
+                            <p>Page : {!! $riwayatpakan->currentPage() !!} <br />
+                                Jumlah Data : {!! $riwayatpakan->total() !!} <br />
+                                Data Per Halaman : {!! $riwayatpakan->perPage() !!} <br />
                             </p>
                         </div>
                         <div class="mx-auto">
                             <div class="paginate-button col-md-12">
-                                {!! $riwayatobat->links('vendor.pagination.custom') !!}
+                                {!! $riwayatpakan->links('vendor.pagination.custom') !!}
                             </div>
                         </div>
                     </div>
@@ -100,8 +98,8 @@
 </div>
 @endsection
 
-@section('ro')
+@section('rp')
     <script>
-        $('#riwayatobat').addClass('active');
+        $('#riwayatpakan').addClass('active');
     </script>
 @endsection
