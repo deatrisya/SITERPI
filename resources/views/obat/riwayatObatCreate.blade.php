@@ -21,7 +21,7 @@
               <form method="POST" action="{{route('riwayatobat.store')}}">
                 @csrf
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Obat</label>
                             <select class="form-control" id="jenisobat" name="obat_id" required>
@@ -59,6 +59,8 @@
                               </div>
                            </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Jumlah Unit</label>
                             <input type="number" class="form-control" id="jumlah_unit" name="jumlah_unit" required value="{{old('jumlah_unit')}}" placeholder="Jumlah Unit">
