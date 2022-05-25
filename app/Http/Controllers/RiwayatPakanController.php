@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pakan;
 use App\Models\RiwayatPakan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Database\Eloquent\Builder;
 
 class RiwayatPakanController extends Controller
 {
@@ -12,9 +15,25 @@ class RiwayatPakanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $pagination = 5;
+        $riwayatpakan = RiwayatPakan::when($request->keyword, function($query) use ($request){
+            $query
+            ->where('tanggal','like',"%{$request->keyword}%")
+            ->orWhere('status','like',"%{$request->keyword}%")
+            ->orWhere('waktu','like',"%{$request->keyword}%")
+            ->orWhere('jumlah','like',"%{$request->keyword}%")
+            ->orWhere('harga_satuan','like',"%{$request->keyword}%")
+            ->orWhere('total_harga','like',"%{$request->keyword}%")
+            ->orWhereHas('jenis_pakan',function(Builder $jenispakan) use ($request){
+                $jenispakan->where('jenis_pakan','like',"%{$request->keyword}%");
+            });
+        })->orderBy('id')
+        ->paginate($pagination);
+
+        return view('pakan.riwayatPakanIndex',compact('riwayatpakan'))
+            ->with('i',(request()->input('page',1)-1)*$pagination);
     }
 
     /**
@@ -24,7 +43,8 @@ class RiwayatPakanController extends Controller
      */
     public function create()
     {
-        //
+        $jenispakan = Pakan::all();
+        return view('pakan.riwayatPakanCreate',['jenispakan'=>$jenispakan]);
     }
 
     /**
@@ -35,7 +55,31 @@ class RiwayatPakanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request -> validate(
+            [
+                'pakan_id' => 'required',
+                'tanggal' => 'required|date',
+                'status' => 'required',
+                'waktu' => 'required',
+                'jumlah' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                'total_harga' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+            ]
+    );
+
+        $riwayatpakan = new RiwayatPakan;
+        $riwayatpakan -> pakan_id = $request->pakan_id;
+        $riwayatpakan -> tanggal = $request->tanggal;
+        $riwayatpakan -> status = $request->status;
+        $riwayatpakan -> waktu = $request->waktu;
+        $riwayatpakan -> jumlah = $request->jumlah;
+        $riwayatpakan -> harga_satuan = $request->harga_satuan;
+        $riwayatpakan -> total_harga = $request->total_harga;
+        $riwayatpakan -> save();
+
+        Alert::success('Success','Riwayat Pakan Berhasil Ditambahkan');
+        return redirect()->route('riwayatpakan.index');
     }
 
     /**
@@ -44,9 +88,10 @@ class RiwayatPakanController extends Controller
      * @param  \App\Models\RiwayatPakan  $riwayatPakan
      * @return \Illuminate\Http\Response
      */
-    public function show(RiwayatPakan $riwayatPakan)
+    public function show($id)
     {
-        //
+        $riwayatpakan = RiwayatPakan::find($id);
+        return view('pakan.riwayatPakanDetail',compact('riwayatpakan'));
     }
 
     /**
@@ -55,9 +100,11 @@ class RiwayatPakanController extends Controller
      * @param  \App\Models\RiwayatPakan  $riwayatPakan
      * @return \Illuminate\Http\Response
      */
-    public function edit(RiwayatPakan $riwayatPakan)
+    public function edit($id)
     {
-        //
+        $riwayatpakan = RiwayatPakan::findOrFail($id);
+        $jenispakan = Pakan::all();
+        return view('pakan.riwayatPakanEdit',compact('riwayatpakan','jenispakan'));
     }
 
     /**
@@ -67,9 +114,33 @@ class RiwayatPakanController extends Controller
      * @param  \App\Models\RiwayatPakan  $riwayatPakan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RiwayatPakan $riwayatPakan)
+    public function update(Request $request, $id)
     {
-        //
+         // dd($id);
+         $request -> validate(
+            [
+                'pakan_id' => 'required',
+                'tanggal' => 'required|date',
+                'status' => 'required',
+                'waktu' => 'required',
+                'jumlah' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                'total_harga' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+            ]
+    );
+
+        $riwayatpakan = RiwayatPakan::findOrFail($id);
+        $riwayatpakan -> pakan_id = $request->pakan_id;
+        $riwayatpakan -> tanggal = $request->tanggal;
+        $riwayatpakan -> status = $request->status;
+        $riwayatpakan -> waktu = $request->waktu;
+        $riwayatpakan -> jumlah = $request->jumlah;
+        $riwayatpakan -> harga_satuan = $request->harga_satuan;
+        $riwayatpakan -> total_harga = $request->total_harga;
+        $riwayatpakan -> save();
+
+        Alert::success('Success','Riwayat Pakan Berhasil Diperbarui');
+        return redirect()->route('riwayatpakan.index');
     }
 
     /**
@@ -78,8 +149,10 @@ class RiwayatPakanController extends Controller
      * @param  \App\Models\RiwayatPakan  $riwayatPakan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RiwayatPakan $riwayatPakan)
+    public function destroy($id)
     {
-        //
+        RiwayatPakan::find($id)->delete();
+        Alert::success('Success','Riwayat Pakan Berhasil Dihapus');
+        return redirect()->route('riwayatpakan.index');
     }
 }
