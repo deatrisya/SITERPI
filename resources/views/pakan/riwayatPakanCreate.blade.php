@@ -16,12 +16,11 @@
                     @endforeach
                 </ul>
               </div>
-
               @endif
               <form method="POST" action="{{route('riwayatpakan.store')}}">
                 @csrf
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jenis pakan</label>
                             <select class="form-control" id="jenispakan" name="pakan_id" required>
@@ -62,6 +61,8 @@
                                 <div class="error">{{ $errors->first('waktu') }}</div>
                             @endif
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Jumlah</label>
                             <input type="number" class="form-control" id="jumlah" name="jumlah" required value="{{old('jumlah')}}" placeholder="Jumlah">

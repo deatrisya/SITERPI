@@ -21,7 +21,7 @@
             @csrf
             @method('PUT')
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Jenis Pakan</label>
                     <select class="form-control" id="jenispakan" name="pakan_id" required>
@@ -37,7 +37,6 @@
                   <label for="exampleInputPassword1">Tanggal</label>
                   <input type="date" class="form-control" id="tanggal" name="tanggal" required value="{{$riwayatpakan->tanggal}}">
                 </div>
-                
                 <div class="form-group">
                   <label for="exampleInputPassword1">Status</label>
                     <select class="form-control" id="status" name="status" required>
@@ -53,6 +52,8 @@
                         <option value="Sore"  @if ($riwayatpakan->waktu=="Sore")selected @endif>Sore</option>
                     </select>
                 </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Jumlah</label>
                   <input type="number" class="form-control" id="jumlah" name="jumlah" required value="{{$riwayatpakan->jumlah}}">

@@ -19,7 +19,7 @@
 
               @endif
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jenis Pakan</label>
                             <input type="text" class="form-control" id="pakan" name="pakan" disabled value="{{$riwayatpakan->pakan->jenis_pakan}}">
@@ -43,6 +43,8 @@
                                 <option value="Sore" @if ($riwayatpakan->waktu == "Sore")selected @endif>Sore</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Jumlah</label>
                             <input type="text" class="form-control" id="jumlah" name="jumlah" readonly value="{{$riwayatpakan->jumlah}} Kg">
