@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Keuangan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 
 class KeuanganController extends Controller
 {
@@ -116,5 +117,11 @@ class KeuanganController extends Controller
         Keuangan::find($id)->delete();
         Alert::success('Success','Data Keuangan Berhasil DiHapus');
         return redirect()->route('keuangan.index');
+    }
+
+    public function cetak_pdf(){
+        $keuangan = Keuangan::all();
+        $pdf = PDF::loadview('keuangan.keuangan_pdf',['keuangan'=>$keuangan]);
+        return $pdf->stream();
     }
 }
