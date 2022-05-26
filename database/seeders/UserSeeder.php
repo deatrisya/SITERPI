@@ -15,15 +15,32 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'nama' => 'Deatrisya',
-            'username' => 'admin',
-            'password'=> Hash::make('admin'),
-            'email' => 'admin@email.com',
-            'jenis_kelamin' => 'P',
-            'tanggal_lahir' => '2001-12-18',
-            'alamat' => 'Purwosari',
-            'jabatan' => 'Admin'
-        ]);
+        $dataItem = [
+            [
+                'foto' => null,
+                'nama' => 'Deatrisya',
+                'username' => 'admin',
+                'password'=> Hash::make('admin'),
+                'email' => 'admin@email.com',
+                'no_hp' => '081222333444',
+                'jenis_kelamin' => 'P',
+                'tanggal_lahir' => '2001-12-18',
+                'alamat' => 'Purwosari',
+                'jabatan' => 'Admin'
+            ],
+            [
+                'foto' => null,
+                'nama' => 'Dea Mirell',
+                'username' => 'deamirell',
+                'password'=> Hash::make('12345678'),
+                'email' => 'deatrisya@email.com',
+                'no_hp' => '081222333444',
+                'jenis_kelamin' => 'P',
+                'tanggal_lahir' => '2001-12-18',
+                'alamat' => 'Purwosari',
+                'jabatan' => 'Admin'
+            ]
+        ];
+        DB::table('users')->insert($dataItem);
     }
 }
