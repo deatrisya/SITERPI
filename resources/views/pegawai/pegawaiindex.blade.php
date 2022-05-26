@@ -24,6 +24,16 @@
                </div>
                 </div>
             </div>
+            <div class="alert-option">
+                <div class="col-md-12">
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{$message}}</p>
+                    </div>
+                @endif
+
+                </div>
+            </div>
 
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -46,25 +56,28 @@
                     <tbody>
                         @foreach ($pegawai as $data)
                     <tr>
-                            <td scope="row">{{ ++$i}}</td>
-                            <td>{{$data->sapi->nis}}</td>
-                            @if ($data->status_transaksi == 'Beli')
-                                <td class="text-center"><span class="badge badge-primary">Beli</span></td>
-                            @else
-                                <td class="text-center"><span class="badge badge-success">Jual</span></td>
-                            @endif
-                            <td>{{$data->harga}}</td>
-                            <td>{{$data->created_at}}</td>
-                            <td>
-                                <form action="{{ route('pegawai.destroy',  $data->id) }}" method="POST">
-                                    <a class="btn btn-icons btn-primary" href="{{route('pegawai.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
-                                    <a class="btn btn-icons btn-warning" href="{{route('pegawai.edit', $data->id)}}"><i class="mdi mdi-pencil"></i></a>
+                        <td scope="row">{{ ++$i}}</td>
+                        <td>{{$data->nip}}</td>
+                        <td>{{$data->foto_pegawai}}</td>
+                        <td>{{$data->nama}}</td>
+                        <td>{{$data->jenis_kelamin}}</td>
+                        <td>{{$data->tempat_lahir}}</td>
+                        <td>{{$data->tanggal_lahir}}</td>
+                        <td>{{$data->alamat}}</td>
+                        <td>{{$data->no_telp}}</td>
+                        <td>{{$data->jabatan}}</td>
+                        <td>{{$data->jam_kerja}}</td>
+                        <td>{{$data->gaji}}</td>
+                        <td>
+                            <form action="{{ route('pegawai.destroy',  $data->nip) }}" method="POST">
+                                <a class="btn btn-icons btn-primary" href="{{route('pegawai.show', $data->nip)}}"><i class="mdi mdi-eye"></i></a>
+                                <a class="btn btn-icons btn-warning" href="{{route('pegawai.edit', $data->nip)}}"><i class="mdi mdi-pencil"></i></a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-icons btn-danger"><i class="mdi mdi-delete"></i></button>
-                                </form>
-                            </td>
-                        </tr>
+                                <button type="submit" class="btn btn-icons btn-danger"><i class="mdi mdi-delete"></i></button>
+                            </form>
+                        </td>
+                    </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -90,4 +103,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script>
+        $('#pegawai').addClass('active');
+    </script>
 @endsection

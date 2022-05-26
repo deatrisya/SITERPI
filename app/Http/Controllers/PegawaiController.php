@@ -27,7 +27,7 @@ class PegawaiController extends Controller
             ->orWhere('alamat','like',"%{$request->keyword}%")
             ->orWhere('no_telp','like',"%{$request->keyword}%")
             ->orWhere('jabatan','like',"%{$request->keyword}%")
-            ->orWhere('jem_kerja','like',"%{$request->keyword}%")
+            ->orWhere('jam_kerja','like',"%{$request->keyword}%")
             ->orWhere('gaji','like',"%{$request->keyword}%");
         })->orderBy('nip')->paginate($pagination);
 
