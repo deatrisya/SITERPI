@@ -94,7 +94,7 @@
         </div>
     </div>
 @endsection
-@section('rp')
+@section('js')
 <script type="text/javascript">
     $(function(){
         $("#status").change(function () {

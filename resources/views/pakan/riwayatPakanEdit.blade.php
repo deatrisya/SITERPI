@@ -26,8 +26,8 @@
                   <label for="exampleInputEmail1">Jenis Pakan</label>
                     <select class="form-control" id="jenispakan" name="pakan_id" required>
                       @foreach ($jenispakan as $data)
-                        <option value="{{$data->id}}" 
-                          @if ($data->id == $riwayatpakan->pakan_id) selected 
+                        <option value="{{$data->id}}"
+                          @if ($data->id == $riwayatpakan->pakan_id) selected
                           @endif>{{$data->jenis_pakan}}
                         </option>
                       @endforeach
@@ -75,7 +75,7 @@
     </div>
   </div>
 @endsection
-@section('jp')
+@section('js')
 <script type="text/javascript">
     $(function(){
         $("#status").change(function () {
