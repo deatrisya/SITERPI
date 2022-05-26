@@ -24,16 +24,6 @@
                </div>
                 </div>
             </div>
-            <div class="alert-option">
-                <div class="col-md-12">
-                    @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{$message}}</p>
-                    </div>
-                @endif
-
-                </div>
-            </div>
 
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -83,7 +73,9 @@
                     </div>
                 </div>
             </div>
-            <center><a class="btn btn-danger" href="{{ route('jenisSapi_pdf') }}"> Cetak Ke PDF</a></center>
+            <div class="text-center">
+                <a class="btn btn-danger" target="_blank" href="{{ route('jenisSapi_pdf') }}"> Cetak Ke PDF</a>
+            </div>
         </div>
     </div>
 </div>
