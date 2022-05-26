@@ -10,23 +10,52 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ID Sapi</label>
-                            <input type="text" class="form-control" id="sapi_id" name="sapi_id" readonly value="{{$transaksi->sapi->nis}}">
+                            <label for="exampleInputEmail1">NIP</label>
+                            <input type="text" class="form-control" id="nip" name="nip" readonly value="{{$pegawai->nip}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Status Transaksi</label>
-                            <input type="text" class="form-control" value="{{$transaksi->status_transaksi}}" readonly>
+                            <label for="exampleInputPassword1">Foto Pegawai</label>
+                            <input type="text" class="form-control" id="foto_pegawai" name="foto_pegawai" value="{{$pegawai->foto_pegawai}}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Harga</label>
-                            <input type="number" class="form-control" id="harga" name="harga" value="{{$transaksi->harga}}" readonly></input>
+                            <label for="exampleInputPassword1">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{$pegawai->nama}}" readonly>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Jenis Kelamin</label>
+                            <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" readonly value="{{$pegawai->jenis_kelamin}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Tempat Lahir</label>
+                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{$pegawai->tempat_lahir}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Tanggal Lahir</label>
+                            <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{$pegawai->tanggal_lahir}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" readonly value="{{$pegawai->alamat}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">No Telepon</label>
+                            <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{$pegawai->no_telp}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Jabatan</label>
+                            <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{$pegawai->jabatan}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Jam Kerja</label>
+                            <input type="text" class="form-control" id="jam_kerja" name="jam_kerja" value="{{$pegawai->jam_kerja}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Gaji</label>
+                            <input type="text" class="form-control" id="gaji" name="gaji" value="{{$pegawai->gaji}}" readonly>
+                        </div>
                     </div>
                 </div>
-                <a class="btn btn-secondary" href="{{ route('transaksi.index')}}">Back</a>
+                <a class="btn btn-secondary" href="{{ route('pegawai.index')}}">Back</a>
 
          </div>
         </div>
