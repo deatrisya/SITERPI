@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UsersController extends Controller
 {
@@ -28,7 +32,6 @@ class UsersController extends Controller
         $user->appends($request->only('keyword'));
         return view('user.user',compact('user'))
             ->with('i',($request->input('page',1)-1)*$pagination);
-        // return view('user.user');
     }
 
     /**
@@ -49,7 +52,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
@@ -83,21 +86,46 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
+        // dd($request->all());
         $request->validate([
             'nama'=> 'required',
             'username' => 'required|string|max:20',
-            'password' => 'required|string|min:8',
-            'email' => 'required|unique:users',
+            'password' => 'min:8|confirmed|nullable',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'no_hp' => 'string|max:13|required',
             'jenis_kelamin' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
             'jabatan' => 'required'
         ]);
-        User::find($id)->update($request->all());
-        return redirect()->route('user.index')
-        ->with('success', 'Data User Berhasil Diupdate');
+
+        $user = User::findOrFail($id);
+        if ($request->hasFile('foto')) {
+            if ($user->foto && file_exists(storage_path('app/public/'.$user->foto))) {
+                Storage::delete('public/'.$user->foto);
+            }
+            $image_name = $request->file('foto')->store('user','public');
+            $user->foto = $image_name;
+        }
+        $user -> nama = $request->nama;
+        $user -> username = $request->username;
+        if (!$request->password && !$request->password_confirmation) {
+            // dd('ini ga ganti');
+        } else {
+            $user->password = Hash::make($request->password);
+        }
+        $user -> email = $request->email;
+        $user -> no_hp = $request->no_hp;
+        $user -> jenis_kelamin = $request->jenis_kelamin;
+        $user -> tanggal_lahir = $request->tanggal_lahir;
+        $user -> alamat = $request->alamat;
+        $user -> jabatan = $request->jabatan;
+        $user -> save();
+
+        Alert::success('Success','User Berhasil Diupdate');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -111,5 +139,12 @@ class UsersController extends Controller
         User::find($id)->delete();
         return redirect()->route('user.index')
             -> with('success', 'User Berhasil Dihapus');
+    }
+
+    public function cetak_pdf(){
+        $user = User::all();
+        // dd($user);
+        $pdf = PDF::loadview('user.user_cetakPdf',['user'=>$user]);
+        return $pdf->stream();
     }
 }
