@@ -26,10 +26,6 @@
     <script src="{{asset('admin/js/misc.js')}}"></script>
     <script src="{{asset('admin/js/dashboard.js')}}"></script>
     @yield('js')
-    @yield('jo')
-    @yield('ro')
-    @yield('jp')
-    @yield('rp')
 </body>
 
 </html>
