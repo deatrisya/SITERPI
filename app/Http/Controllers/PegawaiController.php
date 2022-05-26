@@ -120,7 +120,7 @@ class PegawaiController extends Controller
             'gaji' => 'required',
         ]);
         Pegawai::find($nip)->update($request->all());
-        return redirect()->route('Pegawai.index')
+        return redirect()->route('pegawai.index')
         ->with('success', 'Data Pegawai Berhasil Diupdate');
     }
 
