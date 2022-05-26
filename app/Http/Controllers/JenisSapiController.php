@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Jenis_Sapi;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use PDF;
+// use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class JenisSapiController extends Controller
 {
