@@ -44,8 +44,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $pegawai = Pegawai::where('status','Belum Terjual')->get();
-        return view('pegawai.pegawaicreate',['pegawai'=>$pegawai]);
+        $pegawai = Pegawai::all();
+        return view('pegawai.pegawaicreate',['jenissapi'=>$pegawai]);
     }
 
     /**
@@ -68,15 +68,10 @@ class PegawaiController extends Controller
             'jam_kerja' => 'required',
             'gaji' => 'required',
         ]);
+        Pegawai::create($request->all());
 
-        $pegawai = new Pegawai;
-        $pegawai -> nip = $request->nip;
-        $pegawai -> status_pegawai = $request->status_pegawai;
-        $pegawai -> harga = $request->harga;
-        $pegawai->save();
-
-        Alert::success('Success','Pegawai Berhasil Ditambahkan');
-        return redirect()->route('Pegawai.index');
+        Alert::success('Success','Data Pegawai Berhasil Ditambahkan');
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -138,7 +133,7 @@ class PegawaiController extends Controller
     public function destroy($nip)
     {
         Pegawai::find($nip)->delete();
-        return redirect()->route('Pegawai.index')
+        return redirect()->route('pegawai.index')
             -> with('success', 'Pegawai Berhasil Dihapus');
     }
 }

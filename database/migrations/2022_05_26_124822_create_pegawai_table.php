@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePegawaisTable extends Migration
+class CreatePegawaiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreatePegawaisTable extends Migration
     public function up()
     {
         Schema::create('pegawais', function (Blueprint $table) {
-            $table->string('nip', 10)->Primarykey();
+            $table->string('nip', 10)->primary();
             $table->string('foto_pegawai');
             $table->string('nama');
             $table->enum('jenis_kelamin', ['P','L']);

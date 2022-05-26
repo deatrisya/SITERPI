@@ -10,6 +10,8 @@ class Pegawai extends Model
     use HasFactory;
     protected $table = 'pegawais';
     protected $primaryKey = 'nip';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
         'nip',

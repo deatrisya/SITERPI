@@ -56,7 +56,6 @@
                     <tbody>
                         @foreach ($pegawai as $data)
                     <tr>
-                        <td scope="row">{{ ++$i}}</td>
                         <td>{{$data->nip}}</td>
                         <td>{{$data->foto_pegawai}}</td>
                         <td>{{$data->nama}}</td>
