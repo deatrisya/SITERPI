@@ -88,7 +88,7 @@
 </div>
 @endsection
 
-@section('jp')
+@section('js')
     <script>
         $('#jenispakan').addClass('active');
     </script>

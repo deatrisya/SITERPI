@@ -88,7 +88,7 @@
 </div>
 @endsection
 
-@section('jo')
+@section('js')
     <script>
         $('#jenisobat').addClass('active');
     </script>

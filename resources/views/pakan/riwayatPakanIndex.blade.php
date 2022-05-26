@@ -98,7 +98,7 @@
 </div>
 @endsection
 
-@section('rp')
+@section('js')
     <script>
         $('#riwayatpakan').addClass('active');
     </script>

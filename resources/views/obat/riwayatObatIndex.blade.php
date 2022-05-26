@@ -100,7 +100,7 @@
 </div>
 @endsection
 
-@section('ro')
+@section('js')
     <script>
         $('#riwayatobat').addClass('active');
     </script>
