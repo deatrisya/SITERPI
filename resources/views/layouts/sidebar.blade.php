@@ -4,7 +4,7 @@
             <div class="nav-link">
                 <div class="user-wrapper">
                     <div class="profile-image">
-                        <img src="{{asset('admin/images/faces/face1.jpg')}}" alt="profile image">
+                        <img src="{{asset('storage/'.Auth()->user()->foto)}}" alt="profile image" width="50px" height="50px">
                     </div>
                     <div class="text-wrapper">
                         <p class="profile-name">{{Auth()->user()->nama}}</p>
