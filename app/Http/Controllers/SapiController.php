@@ -8,6 +8,7 @@ use App\Models\Transaksi;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use PDF;
 
 class SapiController extends Controller
 {
@@ -177,5 +178,10 @@ class SapiController extends Controller
         Sapi::find($id)->delete();
         Alert::success('Success','Sapi Berhasil Dihapus');
         return redirect()->route('sapi.index');
+    }
+    public function cetak_pdf(){
+        $sapi = Sapi::all() ;
+        $pdf = PDF::loadview('sapi.sapi_pdf',['sapi'=>$sapi]);
+        return $pdf->stream();
     }
 }
