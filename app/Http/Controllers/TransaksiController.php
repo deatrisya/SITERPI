@@ -7,6 +7,7 @@ use App\Models\Transaksi;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 
 class TransaksiController extends Controller
 {
@@ -140,5 +141,10 @@ class TransaksiController extends Controller
     public function getPrice($id){
         $loadData = Sapi::find($id);
         return response()->json($loadData);
+    }
+    public function cetak_pdf(){
+        $transaksi = Transaksi::all() ;
+        $pdf = PDF::loadview('transaksi.transaksi_pdf',['transaksi'=>$transaksi]);
+        return $pdf->stream();
     }
 }
