@@ -14,14 +14,18 @@
                         <a class="btn btn-orange" href="{{route('jenissapi.create')}}">+ Tambah Data</a>
                     </div>
                    </div>
-                   <div class="col-md-6">
-                    <div class="float-right">
-                        <form class="form-inline my-2 my-lg-0" action="{{url()->current()}}" method="GET">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{request('keyword')}}">
-                            <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
-                        </form>
-                   </div>
-               </div>
+                   <div class="col-md-6 " >                      
+                        <div class="float-right">
+                            <form class="form-inline my-2 my-lg-0" action="{{url()->current()}}" method="GET">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{request('keyword')}}">
+                                <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
+                            </form>
+                        </div>
+                        <div class="d-flex flex-row-reverse float-right px-2">
+                            <a href="{{route('jenisSapi_pdf')}}" target="_blank" class="btn btn-icons btn-danger"><i
+                                class="mdi mdi-file-document"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -72,9 +76,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <a class="btn btn-danger" target="_blank" href="{{ route('jenisSapi_pdf') }}"> Cetak Ke PDF</a>
             </div>
         </div>
     </div>
