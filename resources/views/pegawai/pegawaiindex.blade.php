@@ -57,7 +57,7 @@
                         @foreach ($pegawai as $data)
                     <tr>
                         <td>{{$data->nip}}</td>
-                        <td>{{$data->foto_pegawai}}</td>
+                        <td><img width="100px" height="100px" src="{{ asset('storage/' . $data->foto_pegawai) }}"></td>
                         <td>{{$data->nama}}</td>
                         <td>{{$data->jenis_kelamin}}</td>
                         <td>{{$data->tempat_lahir}}</td>

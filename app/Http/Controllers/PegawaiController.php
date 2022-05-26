@@ -69,7 +69,7 @@ class PegawaiController extends Controller
             'gaji' => 'required',
         ]);
         Pegawai::create($request->all());
-
+        $request->file('foto_pegawai')->store('images', 'public');
         Alert::success('Success','Data Pegawai Berhasil Ditambahkan');
         return redirect()->route('pegawai.index');
     }

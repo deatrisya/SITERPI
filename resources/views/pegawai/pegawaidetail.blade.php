@@ -14,8 +14,8 @@
                             <input type="text" class="form-control" id="nip" name="nip" readonly value="{{$pegawai->nip}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Foto Pegawai</label>
-                            <input type="text" class="form-control" id="foto_pegawai" name="foto_pegawai" value="{{$pegawai->foto_pegawai}}" readonly>
+                            <label for="exampleInputPassword1">Foto Pegawai</label><br>
+                            <img width="150px" src="{{ asset('storage/' . $pegawai->foto_pegawai) }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nama</label>

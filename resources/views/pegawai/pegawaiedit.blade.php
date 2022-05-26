@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label for="image">Foto Pegawai</label>
                             <input type="file" class="form-control" aria-describedby="emailHelp" placeholder="Foto Pegawai" name="foto_pegawai" required value="{{$pegawai->foto_pegawai}}">
-                            <img width="150px" src="{{asset('storage/')}}" >
+                            <img width="150px" src="{{asset('storage/'. $pegawai->foto_pegawai)}}" >
                           </div>
                     </div>
                     <div class="col-md-6">
