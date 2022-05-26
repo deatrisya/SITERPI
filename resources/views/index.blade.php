@@ -91,7 +91,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">Karyawan</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">246</h3>
+                                <h3 class="font-weight-medium text-right mb-0">433</h3>
                             </div>
                         </div>
                     </div>
