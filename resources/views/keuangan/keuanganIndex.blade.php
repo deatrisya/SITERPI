@@ -14,12 +14,17 @@
                         <a class="btn btn-orange" href="{{route('keuangan.create')}}">+ Tambah Data</a>
                     </div>
                    </div>
-                   <div class="col-md-6">
+                   <div class="col-md-6 " >
+
                     <div class="float-right">
                         <form class="form-inline my-2 my-lg-0" action="{{url()->current()}}" method="GET">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{request('keyword')}}">
                             <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
                         </form>
+                   </div>
+
+                   <div class="d-flex flex-row-reverse float-right px-2">
+                    <a href="{{route('keuangan_pdf')}}" target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
                    </div>
                </div>
                 </div>
@@ -35,7 +40,6 @@
                             <th scope="col">Tipe ID</th>
                             <th scope="col">Masuk</th>
                             <th scope="col">Keluar</th>
-                            <th scope="col">Create At</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +51,6 @@
                             <td>{{$data->tipeID}}</td>
                             <td>{{$data->masuk}}</td>
                             <td>{{$data->keluar}}</td>
-                            <td>{{$data->created_at}}</td>
                             <td>
                                 <form action="{{ route('keuangan.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('keuangan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
