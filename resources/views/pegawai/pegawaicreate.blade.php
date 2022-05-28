@@ -18,7 +18,7 @@
               </div>
 
               @endif
-              <form method="POST" action="{{route('pegawai.store')}}">
+              <form method="POST" action="{{route('pegawai.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -29,8 +29,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="image">Foto Pegawai</label>
-                            <input type="file" class="form-control" aria-describedby="emailHelp" placeholder="Foto Pegawai" name="foto_pegawai" required>
+                            <label for="foto_pegawai">Foto Pegawai</label>
+                            <input type="file" class="form-control" placeholder="Foto Pegawai" name="foto_pegawai" required>
                           </div>
                     </div>
                     <div class="col-md-6">
