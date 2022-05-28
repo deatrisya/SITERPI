@@ -18,7 +18,7 @@
               </div>
 
               @endif
-              <form method="POST" enctype="multipart/form-data" action="{{route('pegawai.update',$pegawai->nip)}}">
+              <form method="POST" enctype="multipart/form-data"  action="{{route('pegawai.update',$pegawai->nip)}}">
                 @csrf
                 @method('PUT')
                 <div class="row">

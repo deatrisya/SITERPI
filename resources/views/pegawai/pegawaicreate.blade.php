@@ -18,7 +18,7 @@
               </div>
 
               @endif
-              <form method="POST" action="{{route('pegawai.store')}}" enctype="multipart/form-data">
+              <form method="POST"  enctype="multipart/form-data" action="{{route('pegawai.store')}}">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
