@@ -128,7 +128,6 @@ class PegawaiController extends Controller
     {
         $request->validate([
             'nip'=> 'required|string|max:10',
-            'foto_pegawai' => 'required|string',
             'nama' => 'required|string',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
@@ -140,9 +139,6 @@ class PegawaiController extends Controller
         ]);
         $pegawai = Pegawai::where('nip', $nip)->first();
         $pegawai->nip = $request->get('nip');
-        if($pegawai->foto_pegawai && file_exists(storage_path('app/public/'. $pegawai->foto_pegawai))){
-            Storage::delete(['public/'. $pegawai->foto_pegawai]);
-        }
         $image_name = $request->file('foto_pegawai')->store('images', 'public');
         $pegawai->foto_pegawai = $image_name;
         $pegawai->nama = $request->get('nama');
@@ -153,6 +149,14 @@ class PegawaiController extends Controller
         $pegawai->jabatan = $request->get('jabatan');
         $pegawai->jam_kerja = $request->get('jam_kerja');
         $pegawai->gaji = $request->get('gaji');
+
+        if($request->hasFile('foto_pegawai')){
+            if($pegawai->foto_pegawai && file_exists(storage_path('app/public/'. $pegawai->foto_pegawai))){
+                Storage::delete('public/'.$pegawai->foto_pegawai);
+            }
+            $image_name = $request->file('foto_pegawai')->store('images', 'public');
+            $pegawai->foto_pegawai = $image_name;
+        }
         $pegawai->save();
 
         // Pegawai::find($nip)->update($request->all());
