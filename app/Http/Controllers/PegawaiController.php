@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
@@ -58,7 +59,7 @@ class PegawaiController extends Controller
     {
         $request -> validate([
             'nip'=> 'required|string|max:10',
-            'foto_pegawai' => 'required|string',
+            'foto_pegawai' => 'required',
             'nama' => 'required|string',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
@@ -68,7 +69,25 @@ class PegawaiController extends Controller
             'jam_kerja' => 'required',
             'gaji' => 'required',
         ]);
-        Pegawai::create($request->all());
+        // Pegawai::create($request->all());
+        $pegawai = new Pegawai;
+        $pegawai->nip = $request->get('nip');
+        $pegawai->nama = $request->get('nama');
+        $pegawai->tempat_lahir = $request->get('tempat_lahir');
+        $pegawai->tanggal_lahir = $request->get('tanggal_lahir');
+        $pegawai->alamat = $request->get('alamat');
+        $pegawai->no_telp = $request->get('no_telp');
+        $pegawai->jabatan = $request->get('jabatan');
+        $pegawai->jam_kerja = $request->get('jam_kerja');
+        $pegawai->gaji = $request->get('gaji');
+
+        if ($request->file('foto_pegawai')){
+            $image_name = $request ->file('foto_pegawai')->store('images', 'public');
+        }
+
+        $pegawai->foto_pegawai = $image_name;
+
+        $pegawai->save();
         
         Alert::success('Success','Data Pegawai Berhasil Ditambahkan');
         return redirect()->route('pegawai.index');
@@ -119,7 +138,24 @@ class PegawaiController extends Controller
             'jam_kerja' => 'required',
             'gaji' => 'required',
         ]);
-        Pegawai::find($nip)->update($request->all());
+        $pegawai = Pegawai::where('nip', $nip)->first();
+        $pegawai->nip = $request->get('nip');
+        if($pegawai->foto_pegawai && file_exists(storage_path('app/public/'. $pegawai->foto_pegawai))){
+            Storage::delete(['public/'. $pegawai->foto_pegawai]);
+        }
+        $image_name = $request->file('foto_pegawai')->store('images', 'public');
+        $pegawai->foto_pegawai = $image_name;
+        $pegawai->nama = $request->get('nama');
+        $pegawai->tempat_lahir = $request->get('tempat_lahir');
+        $pegawai->tanggal_lahir = $request->get('tanggal_lahir');
+        $pegawai->alamat = $request->get('alamat');
+        $pegawai->no_telp = $request->get('no_telp');
+        $pegawai->jabatan = $request->get('jabatan');
+        $pegawai->jam_kerja = $request->get('jam_kerja');
+        $pegawai->gaji = $request->get('gaji');
+        $pegawai->save();
+
+        // Pegawai::find($nip)->update($request->all());
         return redirect()->route('pegawai.index')
         ->with('success', 'Data Pegawai Berhasil Diupdate');
     }
