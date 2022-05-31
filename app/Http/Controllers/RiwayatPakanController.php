@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Keuangan;
 use App\Models\Pakan;
 use App\Models\RiwayatPakan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 
 class RiwayatPakanController extends Controller
 {
@@ -55,7 +58,22 @@ class RiwayatPakanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+
+        $stokAwal = RiwayatPakan::where('pakan_id',$request->pakan_id)
+        ->where('status','Masuk')
+        ->sum('jumlah');
+
+        $stokKeluar = RiwayatPakan::where('status','Keluar')
+        ->where('pakan_id',$request->pakan_id)
+        ->sum('jumlah');
+
+        $totalStok = $stokAwal-$stokKeluar;
+
+        if ($totalStok < $request->jumlah && $request->status == 'Keluar') {
+            Alert::error('Oops','Stok pakan tidak cukup :(');
+            return back()->withInput();
+        }
+
         $request -> validate(
             [
                 'pakan_id' => 'required',
@@ -75,7 +93,25 @@ class RiwayatPakanController extends Controller
         $riwayatpakan->jumlah = $request->jumlah;
         $riwayatpakan->harga_satuan = $request->harga_satuan;
         $riwayatpakan->total_harga = $request->total_harga;
+
         $riwayatpakan->save();
+
+
+        if($riwayatpakan->status =='Masuk') {
+            $keuangan = new Keuangan;
+
+            $keuangan -> tanggal = $riwayatpakan->tanggal;
+            $keuangan -> tipe = 'Pakan';
+            $keuangan -> tipeID = $riwayatpakan -> id;
+            $keuangan -> keluar = $riwayatpakan->total_harga;
+            $keuangan->save();
+        } else {
+            $riwayatpakan -> harga_satuan = 0;
+            $riwayatpakan -> total_harga = 0;
+        }
+
+        $riwayatpakan->save();
+
 
         Alert::success('Success','Riwayat Pakan Berhasil Ditambahkan');
         return redirect()->route('riwayatpakan.index');
@@ -152,5 +188,10 @@ class RiwayatPakanController extends Controller
         RiwayatPakan::find($id)->delete();
         Alert::success('Success','Riwayat Pakan Berhasil Dihapus');
         return redirect()->route('riwayatpakan.index');
+    }
+
+    public function getHarga($id){
+        $loadData = Pakan::find($id);
+        return response()->json($loadData);
     }
 }
