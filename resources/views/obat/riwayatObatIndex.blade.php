@@ -43,7 +43,6 @@
                             <th scope="col">Nama Obat</th>
                             <th scope="col">Isi</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Jumlah Unit</th>
                             <th scope="col">Harga Satuan</th>
                             <th scope="col">Total Harga </th>
                             <th scope="col">Aksi</th>
@@ -54,13 +53,12 @@
                     <tr>
                         <td scope="row">{{ ++$i}}</td>
                         <td>{{$data->obat->nama_obat}}</td>
-                        <td>{{$data->isi}} ml</td>
+                        <td>{{$data->isi}} <span>{{$data->obat->satuan}}</span></td>
                         @if ($data->status == 'Masuk')
-                                <td class="text-center"><span class="badge badge-primary">Masuk</span></td>
-                            @else
-                                <td class="text-center"><span class="badge badge-warning">Keluar</span></td>
-                            @endif
-                        <td>{{$data->jumlah_unit}} buah</td>
+                            <td class="text-center"><span class="badge badge-primary">Masuk</span></td>
+                        @else
+                            <td class="text-center"><span class="badge badge-warning">Keluar</span></td>
+                        @endif
                         <td>Rp. {{$data->harga_satuan}}</td>
                         <td>Rp. {{$data->total_harga}}</td>
                         <td>

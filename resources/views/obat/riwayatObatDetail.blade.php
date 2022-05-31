@@ -19,23 +19,30 @@
 
               @endif
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Obat</label>
                             <input type="text" class="form-control" id="nama_obat" name="nama_obat" disabled value="{{$riwayatobat->obat->nama_obat}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Isi</label>
-                            <input type="text" class="form-control" id="isi" name="isi" readonly value="{{$riwayatobat->isi}} ml">
+                            <div class="input-group ">
+                                <input type="number" class="form-control" id="isi" name="isi"
+                                    value="{{$riwayatobat->isi}}" readonly>
+                                <div class="input-group-prepend bg-secondary">
+                                    <span class="input-group-text" id="satuan" > {{$riwayatobat->obat->satuan}}</span>
+                                </div>
+                                @if ($errors->has('isi'))
+                                <div class="error">{{ $errors->first('isi') }}</div>
+                                @endif
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Status</label>
                             <input type="text" class="form-control" id="status" name="status" readonly value="{{$riwayatobat->status}}">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Jumlah Unit</label>
-                            <input type="text" class="form-control" id="jumlah_unit" name="jumlah_unit" readonly value="{{$riwayatobat->jumlah_unit}} Buah">
-                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Harga Satuan</label>
                             <input type="text" class="form-control" id="harga_satuan" name="harga_satuan" readonly value="Rp. {{$riwayatobat->harga_satuan}}">
@@ -47,7 +54,6 @@
                     </div>
                 </div>
                 <a class="btn btn-secondary" href="{{ route('riwayatobat.index')}}">Back</a>
-
          </div>
         </div>
     </div>
