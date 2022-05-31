@@ -41,6 +41,9 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama Obat</th>
+                            {{-- <th scope="col">Jumlah</th> --}}
+                            <th scope="col">Satuan</th>
+                            <th scope="col">Harga/Satuan</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -49,6 +52,9 @@
                         <tr>
                             <td scope="row">{{ ++$i}}</td>
                             <td>{{$data->nama_obat}}</td>
+                            {{-- <td>{{$data->jumlah}}</td> --}}
+                            <td>{{$data->satuan}}</td>
+                            <td>Rp {{$data->harga}}</td>
                             <td>
                                 <form action="{{ route('jenisobat.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('jenisobat.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
