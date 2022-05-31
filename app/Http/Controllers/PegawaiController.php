@@ -61,6 +61,7 @@ class PegawaiController extends Controller
             'nip'=> 'required|string|max:10',
             'foto_pegawai' => 'required',
             'nama' => 'required|string',
+            'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
@@ -73,6 +74,7 @@ class PegawaiController extends Controller
         $pegawai = new Pegawai;
         $pegawai->nip = $request->get('nip');
         $pegawai->nama = $request->get('nama');
+        $pegawai->jenis_kelamin = $request->get('jenis_kelamin');
         $pegawai->tempat_lahir = $request->get('tempat_lahir');
         $pegawai->tanggal_lahir = $request->get('tanggal_lahir');
         $pegawai->alamat = $request->get('alamat');
@@ -129,6 +131,7 @@ class PegawaiController extends Controller
         $request->validate([
             'nip'=> 'required|string|max:10',
             'nama' => 'required|string',
+            'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
@@ -142,6 +145,7 @@ class PegawaiController extends Controller
         $image_name = $request->file('foto_pegawai')->store('images', 'public');
         $pegawai->foto_pegawai = $image_name;
         $pegawai->nama = $request->get('nama');
+        $pegawai->jenis_kelamin = $request->get('jenis_kelamin');
         $pegawai->tempat_lahir = $request->get('tempat_lahir');
         $pegawai->tanggal_lahir = $request->get('tanggal_lahir');
         $pegawai->alamat = $request->get('alamat');
