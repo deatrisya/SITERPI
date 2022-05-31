@@ -30,18 +30,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Status</label>
-                            <select class="form-control" id="status" name="status" disabled>
-                                <option value="Masuk" @if ($riwayatpakan->status == "Masuk")selected @endif>Masuk</option>
-                                <option value="Keluar" @if ($riwayatpakan->status == "Keluar")selected @endif>Keluar</option>
-                            </select>
+                            <input type="text" class="form-control" disabled value="{{$riwayatpakan->status}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Waktu</label>
-                            <select class="form-control" id="waktu" name="waktu" disabled>
-                                <option value="Pagi" @if ($riwayatpakan->waktu == "Pagi")selected @endif>Pagi</option>
-                                <option value="Siang" @if ($riwayatpakan->waktu == "Siang")selected @endif>Siang</option>
-                                <option value="Sore" @if ($riwayatpakan->waktu == "Sore")selected @endif>Sore</option>
-                            </select>
+                            <input type="text" class="form-control" disabled value="{{$riwayatpakan->waktu}}">
                         </div>
                     </div>
                     <div class="col-md-6">
