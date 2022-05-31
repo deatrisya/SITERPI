@@ -17,16 +17,20 @@ class PakanSeeder extends Seeder
     {
         $dataItem = [
             [
-                'jenis_pakan' => 'Pakan Kasar'
+                'jenis_pakan' => 'Pakan Kasar',
+                'harga' => 10000,
             ],
             [
-                'jenis_pakan' => 'Pakan Penguat'
+                'jenis_pakan' => 'Pakan Penguat',
+                'harga' => 20000,
             ],
             [
-                'jenis_pakan' => 'Pakan Fermentasi'
+                'jenis_pakan' => 'Pakan Fermentasi',
+                'harga' => 30000,
             ],
             [
-                'jenis_pakan' => 'Pakan Tambahan'
+                'jenis_pakan' => 'Pakan Tambahan',
+                'harga' => 40000,
             ]
         ];
         DB::table('pakans')->insert($dataItem);
