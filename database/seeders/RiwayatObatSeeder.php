@@ -19,17 +19,15 @@ class RiwayatObatSeeder extends Seeder
                 'obat_id' => 1,
                 'isi' => 100,
                 'status' => 'Masuk',
-                'jumlah_unit' => 10,
-                'harga_satuan' => 7500,
-                'total_harga' => 75000
+                'harga_satuan' => 1500,
+                'total_harga' => 150000
             ],
             [
                 'obat_id' => 3,
                 'isi' => 60,
                 'status' => 'Masuk',
-                'jumlah_unit' => 5,
-                'harga_satuan' => 18500,
-                'total_harga' => 92500
+                'harga_satuan' => 100,
+                'total_harga' => 6000
             ]
         ];
         DB::table('riwayat_obats')->insert($dataItem);
