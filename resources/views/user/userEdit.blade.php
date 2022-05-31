@@ -27,7 +27,6 @@
                             <label for="foto">Foto</label>
                             <input type="file" name="foto" class="form-control" aria-describedby="foto" value="{{old('foto')}}">
                             <img height="100px" width="100px" src="{{asset('storage/'.$user->foto)}}" alt="gambar profil" >
-
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nama</label>
