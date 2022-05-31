@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jenis_Sapi;
+use App\Models\Keuangan;
 use App\Models\Sapi;
 use App\Models\Transaksi;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class SapiController extends Controller
 {
@@ -87,17 +89,24 @@ class SapiController extends Controller
         $sapi -> kondisi = $request->kondisi;
         $sapi -> keterangan = $request->keterangan;
 
-        if ($sapi -> status_asal == 'Beli') {
-            $sapi->save();
+        $sapi -> save();
 
+        if ($sapi -> status_asal == 'Beli') {
             $transaksi = new Transaksi;
             $transaksi -> sapi_id = $sapi -> id ;
             $transaksi -> status_transaksi = 'Beli';
             $transaksi -> harga = $sapi ->harga;
             $transaksi -> save();
-        } else {
-            $sapi -> save();
+
+            $keuangan = new Keuangan;
+            $keuangan -> tanggal = Carbon::now()->toDateString();
+            $keuangan -> tipe = 'Transaksi';
+            $keuangan -> tipeID = $transaksi -> id;
+            $keuangan -> keluar = $sapi->harga;
+            $keuangan->save();
+
         }
+
 
         Alert::success('Success','Sapi Berhasil Ditambahkan');
         return redirect()->route('sapi.index');
