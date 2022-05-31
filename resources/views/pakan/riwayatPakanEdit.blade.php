@@ -82,10 +82,44 @@
             if ($(this).val() == 'Keluar') {
                 $("#waktu").removeAttr("disabled");
                 $("#waktu").focus();
+                $("#waktu").focus();
+                $('#hargaSatuan').hide();
+                $('#totalHarga').hide();
             } else {
                 $("#waktu").attr("disabled", "disabled");
+                $('#hargaSatuan').show();
+                $('#totalHarga').show();
             }
         });
     });
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $('select#pakan_id').on('change',function(e){
+            var selected_pakan = $(this).children("option:selected").val();
+            $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/getRiwayatPakan/'+selected_pakan,
+                success:function(response){
+                    console.log(response);
+                    $('#harga_satuan').val(response.harga)
+                    hitungHarga();
+                }
+            })
+        });
+
+        // calculate price
+        hitungHarga();
+        function hitungHarga() {
+            var totalHarga = $('#total_harga');
+            var satuan = $('#jumlah').val();
+            var hargaSatuan = $('#harga_satuan').val();
+
+            var hitungTotal = parseFloat(hargaSatuan) * parseFloat(satuan);
+            totalHarga.val(hitungTotal);
+        }
 </script>
 @endsection
