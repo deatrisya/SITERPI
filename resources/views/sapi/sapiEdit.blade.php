@@ -79,22 +79,6 @@
                             <label for="exampleInputPassword1">Harga</label>
                             <input type="number" class="form-control" id="harga" name="harga" required value="{{$sapi->harga}}">
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label for="exampleInputPassword1">Status</label>
-                            <select class="form-control" id="status" name="status" required>
-                                <option value="Terjual" @if ($sapi->status=="Terjual")selected @endif>Terjual</option>
-                                <option value="Belum Terjual"  @if ($sapi->status=="Belum Terjual")selected @endif>Belum Terjual</option>
-
-                            </select>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="exampleInputPassword1">Status Asal</label>
-                            <select class="form-control" id="status_asal" name="status_asal" required>
-                                <option value="Beli" @if ($sapi->status_asal = "Beli")selected @endif>Beli</option>
-                                <option value="Ternak" @if ($sapi->status_asal = "Ternak")selected @endif>Ternak</option>
-                            </select>
-                        </div> --}}
                     </div>
                 </div>
                 <button type="submit" class="btn btn-orange">Submit</button>
