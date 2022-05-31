@@ -19,7 +19,6 @@ class CreateRiwayatObatsTable extends Migration
             $table->foreign('obat_id')->references('id')->on('obats');
             $table->integer('isi');
             $table->enum('status',['Masuk','Keluar']);
-            $table->integer('jumlah_unit');
             $table->double('harga_satuan');
             $table->double('total_harga');
             $table->timestamps();

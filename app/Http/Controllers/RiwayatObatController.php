@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Keuangan;
 use App\Models\Obat;
 use App\Models\Riwayat_Obat;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -55,25 +57,52 @@ class RiwayatObatController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+
+        $stokAwal = Riwayat_Obat::where('obat_id',$request->obat_id)
+        ->where('status','Masuk')
+        ->sum('isi');
+
+        $stokKeluar = Riwayat_Obat::where('obat_id',$request->obat_id)
+        ->where('status','Keluar')
+        ->sum('isi');
+
+        $totalStok =$stokAwal - $stokKeluar;
+
+        if ($totalStok < $request->isi && $request->status == 'Keluar') {
+            Alert::error('Oops','Stok obat tidak cukup :(');
+            return back()->withInput();
+        }
+
         $request -> validate(
             [
                 'obat_id' => 'required',
                 'isi' => 'required|numeric',
                 'status' => 'required',
-                'jumlah_unit' => 'required|numeric',
                 'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/',
                 'total_harga' => 'required|regex:/^\d+(\.\d{1,2})?$/'
             ]
     );
 
-        $riwayatobat = new Riwayat_Obat();
+        $riwayatobat = new Riwayat_Obat;
         $riwayatobat -> obat_id = $request->obat_id;
         $riwayatobat -> isi = $request->isi;
         $riwayatobat -> status = $request->status;
-        $riwayatobat -> jumlah_unit = $request->jumlah_unit;
         $riwayatobat -> harga_satuan = $request->harga_satuan;
         $riwayatobat -> total_harga = $request->total_harga;
         $riwayatobat -> save();
+
+
+        if($riwayatobat -> status == 'Masuk'){
+            $keuangan = new Keuangan;
+            $keuangan -> tanggal = Carbon::now()->toDateString();
+            $keuangan -> tipe = 'Obat';
+            $keuangan -> tipeID = $riwayatobat->id;
+            $keuangan -> keluar = $riwayatobat->total_harga;
+            $keuangan->save();
+        } else {
+            $riwayatobat -> harga_satuan = 0;
+            $riwayatobat -> total_harga = 0;
+        }
 
         Alert::success('Success','Riwayat Obat Berhasil Ditambahkan');
         return redirect()->route('riwayatobat.index');
@@ -120,7 +149,7 @@ class RiwayatObatController extends Controller
             'obat_id' => 'required',
             'isi' => 'required|numeric',
             'status' => 'required',
-            'jumlah_unit' => 'required|numeric',
+            // 'jumlah_unit' => 'required|numeric',
             'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
@@ -128,7 +157,7 @@ class RiwayatObatController extends Controller
         $riwayatobat -> obat_id = $request->obat_id;
         $riwayatobat -> isi = $request->isi;
         $riwayatobat -> status = $request->status;
-        $riwayatobat -> jumlah_unit = $request->jumlah_unit;
+        // $riwayatobat -> jumlah_unit = $request->jumlah_unit;
         $riwayatobat -> harga_satuan = $request->harga_satuan;
         $riwayatobat -> total_harga = $request->total_harga;
         $riwayatobat->save();
@@ -148,5 +177,10 @@ class RiwayatObatController extends Controller
         Riwayat_Obat::find($id)->delete();
         Alert::success('Success','Riwayat Obat Berhasil Dihapus');
         return redirect()->route('riwayatobat.index');
+    }
+
+    public function getHarga($id){
+        $loadData = Obat::find($id);
+        return response()->json($loadData);
     }
 }

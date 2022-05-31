@@ -16,7 +16,6 @@ class Riwayat_Obat extends Model
         'obat_id',
         'isi',
         'status',
-        'jumlah_unit',
         'harga_satuan',
         'total_harga'
     ];
