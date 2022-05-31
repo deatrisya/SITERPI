@@ -55,8 +55,12 @@
                     <tr>
                         <td scope="row">{{ ++$i}}</td>
                         <td>{{$data->pakan->jenis_pakan}}</td>
-                        <td>{{$data->tanggal}}</td>
-                        <td>{{$data->status}}</td>
+                        <td>{!! date('d-m-Y',strtotime($data->tanggal)) !!}</td>
+                        @if ($data->status == "Masuk")
+                            <td><span class="badge badge-success">Masuk</span></td>
+                        @else
+                            <td><span class="badge badge-danger">Keluar</span></td>
+                        @endif
                         <td>{{$data->waktu}}</td>
                         <td>{{$data->jumlah}} Kg</td>
                         <td>Rp. {{$data->harga_satuan}}</td>
