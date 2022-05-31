@@ -13,7 +13,8 @@ class Pakan extends Model
     protected $primaryKey = 'id';
 
     protected $fillable =[
-        'jenis_pakan'
+        'jenis_pakan',
+        'harga'
     ];
 
     public function riwayatpakan(){

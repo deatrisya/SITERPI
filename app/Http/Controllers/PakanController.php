@@ -18,8 +18,9 @@ class PakanController extends Controller
         $pagination = 5;
         $pakan = Pakan::when($request->keyword, function($query) use ($request){
             $query
-            ->where('jenis_pakan','like',"%{$request->keyword}%");
-        })->orderBy('jenis_pakan')->paginate($pagination);
+            ->where('jenis_pakan','like',"%{$request->keyword}%")
+            ->orWhere('harga','like',"%{$request->keyword}%");
+        })->orderBy('id')->paginate($pagination);
 
         $pakan->appends($request->only('keyword'));
         return view('pakan.jenisPakanIndex',compact('pakan'))
@@ -45,7 +46,8 @@ class PakanController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'jenis_pakan' => 'required|regex:/^[\pL\s\-]+$/u'
+            'jenis_pakan' => 'required|regex:/^[\pL\s\-]+$/u',
+            'harga' => 'required'
         ]);
 
         Pakan::create($request->all());
@@ -88,10 +90,15 @@ class PakanController extends Controller
     public function update(Request $request, $id)
     {
         $request -> validate([
-            'jenis_pakan' => 'required|regex:/^[\pL\s\-]+$/u'
+            'jenis_pakan' => 'required|regex:/^[\pL\s\-]+$/u',
+            'harga' => 'required'
         ]);
 
-        Pakan::find($id)->update($request->all());
+        $pakan = Pakan::findOrFail($id);
+        $pakan -> jenis_pakan = $request->jenis_pakan;
+        $pakan -> harga = $request->harga;
+        $pakan->save();
+        
         Alert::success('Success','Data Pakan Berhasil Diupdate');
         return redirect()->route('jenispakan.index');
     }
