@@ -11,9 +11,11 @@ class Obat extends Model
     use HasFactory;
     protected $table ='obats';
     protected $primaryKey = 'id';
-    
+
     protected $fillable =[
-        'nama_obat'
+        'nama_obat',
+        'satuan',
+        'harga'
     ];
 
     public function riwayatobat(){

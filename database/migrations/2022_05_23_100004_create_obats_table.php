@@ -16,6 +16,8 @@ class CreateObatsTable extends Migration
         Schema::create('obats', function (Blueprint $table) {
             $table->id();
             $table->string('nama_obat');
+            $table->string('satuan');
+            $table->double('harga');
             $table->timestamps();
         });
     }

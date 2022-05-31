@@ -18,7 +18,9 @@ class ObatController extends Controller
         $pagination = 5;
         $jenis = Obat::when($request->keyword, function($query) use ($request){
             $query
-            ->where('nama_obat','like',"%{$request->keyword}%");
+            ->where('nama_obat','like',"%{$request->keyword}%")
+            ->orWhere('satuan','like',"%{$request->keyword}%")
+            ->orWhere('harga','like',"%{$request->keyword}%");
         })->orderBy('nama_obat')->paginate($pagination);
 
         $jenis->appends($request->only('keyword'));
@@ -45,10 +47,16 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'nama_obat' => 'required|regex:/^[\pL\s\-]+$/u'
+            'nama_obat' => 'required|regex:/^[\pL\s\-]+$/u',
+            'satuan' => 'required',
+            'harga' => 'required|numeric'
         ]);
 
-        Obat::create($request->all());
+        $obat = new Obat;
+        $obat->nama_obat = $request->nama_obat;
+        $obat->satuan = $request->satuan;
+        $obat->harga = $request->harga;
+        $obat->save();
 
         Alert::success('Success','Data Obat Berhasil Ditambahkan');
         return redirect()->route('jenisobat.index');
@@ -89,10 +97,17 @@ class ObatController extends Controller
     public function update(Request $request, $id)
     {
         $request -> validate([
-            'nama_obat' => 'required|regex:/^[\pL\s\-]+$/u'
-        ]);
+            'nama_obat' => 'required|regex:/^[\pL\s\-]+$/u',
+            'satuan' => 'required',
+            'harga' => 'required|numeric'
 
-        Obat::find($id)->update($request->all());
+        ]);
+        $obat = Obat::findOrFail($id);
+        $obat->nama_obat = $request->nama_obat;
+        $obat->satuan = $request->satuan;
+        $obat->harga = $request->harga;
+        $obat->save();
+
         Alert::success('Success','Data Obat Berhasil Diupdate');
         return redirect()->route('jenisobat.index');
     }

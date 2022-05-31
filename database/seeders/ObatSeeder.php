@@ -16,16 +16,24 @@ class ObatSeeder extends Seeder
     {
         $dataItem = [
             [
-                'nama_obat' => 'Colibact'
+                'nama_obat' => 'Colibact',
+                'satuan' => 'pcs',
+                'harga' => 1500
             ],
             [
-                'nama_obat' => 'Cofnil'
+                'nama_obat' => 'Cofnil',
+                'satuan' => 'pcs',
+                'harga' => 2000,
             ],
             [
-                'nama_obat' => 'Datilan'
+                'nama_obat' => 'Datilan',
+                'satuan' => 'ml',
+                'harga' => 100,
             ],
             [
-                'nama_obat' => 'Wormectin'
+                'nama_obat' => 'Wormectin',
+                'satuan' => 'ml',
+                'harga' => 100
             ]
         ];
         DB::table('obats')->insert($dataItem);
