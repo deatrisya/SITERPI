@@ -41,6 +41,7 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Jenis Pakan</th>
+                            <th scope="col">Harga</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -49,6 +50,7 @@
                         <tr>
                             <td scope="row">{{ ++$i}}</td>
                             <td>{{$data->jenis_pakan}}</td>
+                            <td>{{$data->harga}}</td>
                             <td>
                                 <form action="{{ route('jenispakan.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('jenispakan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>

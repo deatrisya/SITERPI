@@ -26,6 +26,10 @@
                             <label for="exampleInputEmail1">Jenis Pakan</label>
                             <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Jenis Pakan" name="jenis_pakan" required>
                           </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Harga</label>
+                            <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="Rp. 10000" name="harga" required>
+                          </div>
                     </div>
                     <div class="col-md-6"></div>
                 </div>
@@ -36,3 +40,4 @@
           </div>
     </div>
 @endsection
+

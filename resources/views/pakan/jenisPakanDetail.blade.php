@@ -12,7 +12,11 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jenis Pakan</label>
                             <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Jenis Pakan" name="jenis_pakan" readonly value="{{$pakan->jenis_pakan}}">
-                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Harga Pakan</label>
+                            <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="Jenis Pakan" name="jenis_pakan" readonly value="{{$pakan->harga}}">
+                        </div>
                     </div>
                     <div class="col-md-6"></div>
                 </div>
