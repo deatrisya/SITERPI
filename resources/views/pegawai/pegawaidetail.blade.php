@@ -25,6 +25,8 @@
                             <label for="exampleInputEmail1">Jenis Kelamin</label>
                             <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" readonly value="{{$pegawai->jenis_kelamin}}">
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Tempat Lahir</label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{$pegawai->tempat_lahir}}" readonly>
