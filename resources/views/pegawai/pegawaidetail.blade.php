@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Foto Pegawai</label><br>
-                            <img width="150px" src="{{ asset('storage/' . $pegawai->foto_pegawai) }}">
+                            <img width="120px" height="180" src="{{ asset('storage/' . $pegawai->foto_pegawai) }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nama</label>
@@ -25,12 +25,12 @@
                             <label for="exampleInputEmail1">Jenis Kelamin</label>
                             <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" readonly value="{{$pegawai->jenis_kelamin}}">
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Tempat Lahir</label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{$pegawai->tempat_lahir}}" readonly>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Tanggal Lahir</label>
                             <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{$pegawai->tanggal_lahir}}" readonly>
