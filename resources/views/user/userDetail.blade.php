@@ -11,7 +11,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Foto</label><br>
-                            <img width="150px" src="{{ asset('storage/' . $user->foto) }}">
+                            <img width="120px" height="180px" src="{{ asset('storage/' . $user->foto) }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nama</label>
@@ -21,12 +21,12 @@
                             <label for="exampleInputEmail1">Username</label>
                             <input type="text" class="form-control" id="username" name="username" readonly value="{{$user->username}}">
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Email</label>
                             <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}" readonly>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">No HP</label>
                             <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{$user->no_hp}}" readonly>
