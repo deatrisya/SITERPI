@@ -18,12 +18,13 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $pagination = 2;
+        $pagination = 5;
         $user = User::when($request->keyword, function($query) use ($request){
             $query
             ->where('nama','like',"%{$request->keyword}%")
             ->orWhere('username','like',"%{$request->keyword}%")
             ->orWhere('email','like',"%{$request->keyword}%")
+            ->orWhere('no_hp','like',"%{$request->keyword}%")
             ->orWhere('jenis_kelamin','like',"%{$request->keyword}}%")
             ->orWhere('alamat','like',"%{$request->keyword}}%")
             ->orWhere('jabatan','like',"%{$request->keyword}}%");

@@ -20,11 +20,13 @@
         <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
             <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
                 <div class="row w-100">
-                    <div class="col-lg-4 mx-auto">
+                    <div class="col-lg-6 mx-auto">
                         <h2 class="text-center mb-4 text-white">Register</h2>
                         <div class="auto-form-wrapper">
-                            <form action="{{route('register')}}" method="POST">
+                            <form action="{{route('register')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <div class="row">
+                                <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input id="nama" type="text"
@@ -110,8 +112,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <div class="input-group">
+                                        <input id="no_hp" type="text"
+                                            class="form-control @error('no_hp') is-invalid @enderror"
+                                            placeholder="No Handphone" name="no_hp" value="{{old('no_hp')}}" required
+                                            autocomplete="no_hp" autofocus>
+                                        @error('no_hp')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="mdi mdi-check-circle-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-group">
                                     <select class="form-control @error('jenis_kelamin') is-invalid
-                                    @enderror" aria-label="Default select example" name="jenis_kelamin"
+                                    @enderror"  aria-label="Default select example" name="jenis_kelamin"
                                         id="jenis_kelamin" required>
                                         <option>Jenis Kelamin</option>
                                         <option value="P" @if(old('jenis_kelamin')=="P" )selected @endif>Perempuan
@@ -176,14 +198,33 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="form-group d-flex justify-content-center">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input id="foto" type="file" class="form-control @error('foto') is-invalid
+                                      @enderror" placeholder="Upload Foto" name="foto" value="{{old('foto')}}" required
+                                            autocomplete="foto">
+                                        @error('foto')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="mdi mdi-check-circle-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                                {{-- <div class="form-group d-flex justify-content-center">
                                     <div class="form-check form-check-flat mt-0">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" checked> I agree to the
                                             terms
                                         </label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary submit-btn btn-block">Register</button>
                                 </div>

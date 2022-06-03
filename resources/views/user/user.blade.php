@@ -34,6 +34,7 @@ User Data | SITERPI
                             <th scope="col">Nama</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
+                            <th scope="col">No Handphone</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Tanggal Lahir</th>
                             <th scope="col">Alamat</th>
@@ -50,6 +51,7 @@ User Data | SITERPI
                             <td>{{$data->nama}}</td>
                             <td>{{$data->username}}</td>
                             <td>{{$data->email}}</td>
+                            <td>{{$data->no_hp}}</td>
                             <td>{{$data->jenis_kelamin}}</td>
                             <td>{{$data->tanggal_lahir}}</td>
                             <td>{{$data->alamat}}</td>
@@ -75,6 +77,23 @@ User Data | SITERPI
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="paginate">
+                <div class="container">
+                    <div class="row">
+                        <div class="detail-data col-md-12">
+                            <p>Page : {!! $user->currentPage() !!} <br />
+                                Jumlah Data : {!! $user->total() !!} <br />
+                                Data Per Halaman : {!! $user->perPage() !!} <br />
+                            </p>
+                        </div>
+                        <div class="mx-auto">
+                            <div class="paginate-button col-md-12">
+                                {!! $user->links('vendor.pagination.custom') !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/'; 
 
     /**
      * Create a new controller instance.
@@ -54,10 +54,12 @@ class RegisterController extends Controller
             'username' => ['required','string','max:20','unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'no_hp' => ['required', 'string', 'max:13', 'unique:users'],
             'jenis_kelamin' => ['required','string'],
             'tanggal_lahir' => ['required','date'],
             'alamat' => ['required','string'],
-            'jabatan' => ['required','string']
+            'jabatan' => ['required','string'],
+            'foto' => ['required']
         ]);
     }
 
@@ -74,10 +76,12 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
+            'no_hp' => $data['no_hp'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'tanggal_lahir' => $data['tanggal_lahir'],
             'alamat' => $data['alamat'],
             'jabatan' => $data['jabatan'],
+            'foto' => $data['foto']->store('user', 'public')
         ]);
     }
 }
