@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             RiwayatObatSeeder::class,
             PakanSeeder::class,
             RiwayatPakanSeeder::class,
+            KeuanganSeeder::class,
+            PegawaiSeeder::class,
         ]);
     }
 }
