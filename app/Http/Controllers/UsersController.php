@@ -25,9 +25,10 @@ class UsersController extends Controller
             ->orWhere('username','like',"%{$request->keyword}%")
             ->orWhere('email','like',"%{$request->keyword}%")
             ->orWhere('no_hp','like',"%{$request->keyword}%")
-            ->orWhere('jenis_kelamin','like',"%{$request->keyword}}%")
-            ->orWhere('alamat','like',"%{$request->keyword}}%")
-            ->orWhere('jabatan','like',"%{$request->keyword}}%");
+            ->orWhere('tanggal_lahir','like',"%{$request->keyword}%")
+            ->orWhere('jenis_kelamin','like',"%{$request->keyword}%")
+            ->orWhere('alamat','like',"%{$request->keyword}%")
+            ->orWhere('jabatan','like',"%{$request->keyword}%");
         })->orderBy('id')->paginate($pagination);
 
         $user->appends($request->only('keyword'));
