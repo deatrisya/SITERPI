@@ -61,7 +61,5 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('getRiwayatPakan/{id}',[RiwayatPakanController::class,'getHarga']);
     Route::get('getRiwayatObat/{id}',[RiwayatObatController::class,'getHarga']);
 
-    // canvas
-    Route::get('chartjs',[HomeController::class,'index'])->name('chartjs.index');
 
 });
