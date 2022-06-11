@@ -127,6 +127,7 @@ class UsersController extends Controller
 
         Alert::success('Success','User Berhasil Diupdate');
         return redirect()->route('user.index');
+
     }
 
     /**
@@ -138,8 +139,8 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('user.index')
-            -> with('success', 'User Berhasil Dihapus');
+        Alert::success('Success','User Berhasil Di Update');
+        return redirect()->route('user.index');
     }
 
     public function cetak_pdf(){
