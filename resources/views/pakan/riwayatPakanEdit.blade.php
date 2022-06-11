@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Waktu</label>
-                    <select class="form-control" id="waktu" name="waktu" required>
+                    <select class="form-control" id="waktu" name="waktu" required disabled>
                         <option value="Pagi" @if ($riwayatpakan->waktu=="Pagi")selected @endif>Pagi</option>
                         <option value="Siang"  @if ($riwayatpakan->waktu=="Siang")selected @endif>Siang</option>
                         <option value="Sore"  @if ($riwayatpakan->waktu=="Sore")selected @endif>Sore</option>
@@ -56,13 +56,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Jumlah</label>
-                  <input type="number" class="form-control" id="jumlah" name="jumlah" required value="{{$riwayatpakan->jumlah}}">
+                  <input type="number" class="form-control" id="jumlah" name="jumlah" required onkeyup="hitungHarga()" value="{{$riwayatpakan->jumlah}}">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="hargaSatuan">
                     <label for="exampleInputPassword1">Harga Satuan</label>
                     <input type="number" class="form-control" id="harga_satuan" name="harga_satuan" required value="{{$riwayatpakan->harga_satuan}}">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="totalHarga">
                     <label for="exampleInputPassword1">Total Harga</label>
                     <input type="number" class="form-control" id="total_harga" name="total_harga" required value="{{$riwayatpakan->total_harga}}">
                 </div>
