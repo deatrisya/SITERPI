@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RiwayatObatController extends Controller
 {
@@ -186,5 +187,11 @@ class RiwayatObatController extends Controller
     public function getHarga($id){
         $loadData = Obat::find($id);
         return response()->json($loadData);
+    }
+
+    public function cetak_pdf(){
+        $riwayatObat = Riwayat_Obat::all() ;
+        $pdf = PDF::loadview('obat.riwayatObat_pdf',['riwayatObat'=>$riwayatObat]);
+        return $pdf->stream();
     }
 }
