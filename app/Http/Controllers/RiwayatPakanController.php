@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RiwayatPakanController extends Controller
 {
@@ -200,5 +201,11 @@ class RiwayatPakanController extends Controller
     public function getHarga($id){
         $loadData = Pakan::find($id);
         return response()->json($loadData);
+    }
+
+    public function cetak_pdf(){
+        $riwayatPakan = RiwayatPakan::all() ;
+        $pdf = PDF::loadview('pakan.riwayatPakan_pdf',['riwayatPakan'=>$riwayatPakan])->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }
