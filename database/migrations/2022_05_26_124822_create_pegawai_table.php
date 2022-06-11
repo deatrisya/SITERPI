@@ -15,7 +15,7 @@ class CreatePegawaiTable extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->string('nip', 10)->primary();
-            $table->string('foto_pegawai');
+            $table->string('foto_pegawai')->nullable();
             $table->string('nama');
             $table->enum('jenis_kelamin', ['P','L']);
             $table->string('tempat_lahir');
