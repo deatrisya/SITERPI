@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pakan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PakanController extends Controller
 {
@@ -98,7 +99,7 @@ class PakanController extends Controller
         $pakan -> jenis_pakan = $request->jenis_pakan;
         $pakan -> harga = $request->harga;
         $pakan->save();
-        
+
         Alert::success('Success','Data Pakan Berhasil Diupdate');
         return redirect()->route('jenispakan.index');
     }
@@ -114,5 +115,11 @@ class PakanController extends Controller
         Pakan::find($id)->delete();
         Alert::success('Success','Data Pakan Berhasil Dihapus');
         return redirect()->route('jenispakan.index');
+    }
+
+    public function cetak_pdf(){
+        $jenisPakan = Pakan::all() ;
+        $pdf = PDF::loadview('pakan.jenisPakan_pdf',['jenisPakan'=>$jenisPakan]);
+        return $pdf->stream();
     }
 }
