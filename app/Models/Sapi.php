@@ -13,7 +13,8 @@ class Sapi extends Model
     protected $appends = [
         'umur',
         'status_umur',
-        'statussapi'
+        'statussapi',
+        'status_bobot'
     ];
 
     protected $fillable = [
@@ -37,10 +38,11 @@ class Sapi extends Model
         return \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->format('%y tahun, %m bulan dan %d hari');
     }
     public function getStatusUmurAttribute(){
-        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->y;
-        if ($umur < 5) {
+        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->m;
+        // dd($umur);
+        if ($umur < 2) {
             $status_umur = 'Anak';
-        } elseif ($umur >5 or $umur < 10) {
+        } elseif ($umur >2 or $umur < 7) {
             $status_umur = 'Muda';
         } else {
             $status_umur = 'Dewasa';
@@ -60,7 +62,45 @@ class Sapi extends Model
         return $badge;
     }
 
+    public function getStatusBobotAttribute(){
+        $jenis_kelamin = $this->jenis_kelamin;
+        $bobot = $this->bobot;
+        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->m;
+
+       if($jenis_kelamin == 'Jantan') {
+           if($umur < 2 && $bobot < 27) {
+               $status_bobot = 'Kurus';
+           }elseif ($umur <2 && $bobot >= 27 && $bobot < 67) {
+               $status_bobot = 'Ideal';
+           } elseif($umur >=2 && $umur < 7 && $bobot < 67){
+               $status_bobot = 'Kurus';
+           } elseif($umur >= 2 && $umur < 7 && $bobot >=67 && $bobot <= 103) {
+               $status_bobot = 'Ideal';
+           } elseif($umur >= 7 && $bobot < 103 ) {
+               $status_bobot = "Kurus";
+           } else {
+               $status_bobot = "Ideal";
+           }
+       } elseif($jenis_kelamin == 'Betina'){
+            if($umur < 2 && $bobot < 22) {
+                $status_bobot = 'Kurus';
+            }elseif ($umur <2 && $bobot >= 22 && $bobot < 62) {
+                $status_bobot = 'Ideal';
+            } elseif($umur >=2 && $umur < 7 && $bobot < 62){
+                $status_bobot = 'Kurus';
+            } elseif($umur >= 2 && $umur < 7 && $bobot >=62 && $bobot <= 98) {
+                $status_bobot = 'Ideal';
+            } elseif($umur >= 7 && $bobot < 98 ) {
+                $status_bobot = "Kurus";
+            } else {
+                $status_bobot = "Ideal";
+            }
+       }
+        return $status_bobot;
+    }
+
     public function transaksi(){
         return $this->hasMany(transaksi::class);
     }
+
 }
