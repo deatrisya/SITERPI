@@ -173,6 +173,13 @@ class RiwayatPakanController extends Controller
         $riwayatpakan->total_harga = $request->total_harga;
         $riwayatpakan->save();
 
+        if($request->status == "Masuk") {
+            $keuangan = Keuangan::where('tipe','Pakan')
+            ->where('tipeID',$id)->first();
+            // dd($keuangan);
+            $keuangan -> keluar = $request -> total_harga;
+            $keuangan->save();
+        }
         Alert::success('Success','Riwayat Pakan Berhasil Diperbarui');
         return redirect()->route('riwayatpakan.index');
     }
