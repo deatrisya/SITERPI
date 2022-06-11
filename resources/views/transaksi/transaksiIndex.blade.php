@@ -14,7 +14,7 @@
                         <a class="btn btn-orange" href="{{route('transaksi.create')}}">+ Tambah Data</a>
                     </div>
                    </div>
-                    <div class="col-md-6 " >                      
+                    <div class="col-md-6 " >
                         <div class="float-right">
                             <form class="form-inline my-2 my-lg-0" action="{{url()->current()}}" method="GET">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{request('keyword')}}">
@@ -51,8 +51,8 @@
                             @else
                                 <td class="text-center"><span class="badge badge-success">Jual</span></td>
                             @endif
-                            <td>{{$data->harga}}</td>
-                            <td>{{$data->created_at}}</td>
+                            <td>Rp. {{number_format($data->harga),2}}</td>
+                            <td>{{date('d-F-Y', strtotime($data->created_at))}}</td>
                             <td>
                                 <form action="{{ route('transaksi.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('transaksi.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
