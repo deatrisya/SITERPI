@@ -21,6 +21,9 @@
                             <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
                         </form>
                    </div>
+                   <div class="d-flex flex-row-reverse float-right px-2">
+                    <a href="{{route('riwayatobat.cetak_pdf')}}" target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
+                   </div>
                </div>
                 </div>
             </div>
