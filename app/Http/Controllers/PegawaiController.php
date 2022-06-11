@@ -164,9 +164,8 @@ class PegawaiController extends Controller
         }
         $pegawai->save();
 
-        // Pegawai::find($nip)->update($request->all());
-        return redirect()->route('pegawai.index')
-        ->with('success', 'Data Pegawai Berhasil Diupdate');
+        Alert::success('Success','Data Pegawai Berhasil Ditambahkan');
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -178,8 +177,8 @@ class PegawaiController extends Controller
     public function destroy($nip)
     {
         Pegawai::find($nip)->delete();
-        return redirect()->route('pegawai.index')
-            -> with('success', 'Pegawai Berhasil Dihapus');
+        Alert::success('Success','Data Pegawai Berhasil Dihapus');
+        return redirect()->route('pegawai.index');
     }
 
     public function cetak_pdf(){
