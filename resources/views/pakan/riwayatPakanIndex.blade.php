@@ -21,6 +21,9 @@
                             <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
                         </form>
                    </div>
+                   <div class="d-flex flex-row-reverse float-right px-2">
+                    <a href="{{route('riwayatpakan.cetak_pdf')}}" target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
+                   </div>
                </div>
                 </div>
             </div>
@@ -63,8 +66,8 @@
                         @endif
                         <td>{{$data->waktu}}</td>
                         <td>{{$data->jumlah}} Kg</td>
-                        <td>Rp. {{$data->harga_satuan}}</td>
-                        <td>Rp. {{$data->total_harga}}</td>
+                        <td>Rp. {{number_format($data->harga_satuan),2}}</td>
+                        <td>Rp. {{number_format($data->total_harga),2}}</td>
                         <td>
                             <form action="{{ route('riwayatpakan.destroy',  $data->id) }}" method="POST">
                                 <a class="btn btn-icons btn-primary" href="{{route('riwayatpakan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
