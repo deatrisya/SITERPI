@@ -66,7 +66,7 @@
                             <td scope="row">{{ ++$i}}</td>
                             <td>{{$data->jenissapi->jenis_sapi}}</td>
                             <td>{{$data->nis}}</td>
-                            <td>{{$data->tanggal_lahir}}</td>
+                            <td>{{date('d-F-Y', strtotime($data->tanggal_lahir))}}</td>
                             <td>{{$data->umur}}</td>
                             <td>{{$data->status_umur}}</td>
                             <td>{!! $data->statussapi !!}</td>
@@ -74,7 +74,7 @@
                             <td>{{$data->status_asal}}</td>
                             <td>{{$data->bobot}} Kg</td>
                             <td>{!! $data->status_bobot !!}</td>
-                            <td>{{$data->harga}}</td>
+                            <td>Rp. {{number_format($data->harga),2}}</td>
                             <td>{{$data->kondisi}}</td>
                             <td>{{$data->keterangan}}</td>
                             <td>
