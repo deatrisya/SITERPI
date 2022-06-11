@@ -50,6 +50,11 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('users/cetak_pdf',[UsersController::class,'cetak_pdf'])->name('user.cetak_pdf');
     Route::get('/sapis/cetak_pdf', [SapiController::class, 'cetak_pdf'])->name('sapi.sapi_pdf');
     Route::get('/transaksis/cetak_pdf', [TransaksiController::class, 'cetak_pdf'])->name('transaksi.transaksi_pdf');
+    Route::get('pegawais/cetak_pdf',[PegawaiController::class,'cetak_pdf'])->name('pegawai.cetak_pdf');
+    Route::get('jenispakans/cetak_pdf',[PakanController::class,'cetak_pdf'])->name('jenispakan.cetak_pdf');
+    Route::get('riwayatpakans/cetak_pdf',[RiwayatPakanController::class,'cetak_pdf'])->name('riwayatpakan.cetak_pdf');
+    Route::get('jenisobats/cetak_pdf',[ObatController::class,'cetak_pdf'])->name('jenisobat.cetak_pdf');
+    Route::get('riwayatobats/cetak_pdf',[RiwayatObatController::class,'cetak_pdf'])->name('riwayatobat.cetak_pdf');
 
     //ajax
     Route::get('getTransaksi/{id}',[TransaksiController::class,'getPrice']);
