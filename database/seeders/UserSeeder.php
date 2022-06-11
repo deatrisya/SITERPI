@@ -39,6 +39,18 @@ class UserSeeder extends Seeder
                 'tanggal_lahir' => '2001-12-18',
                 'alamat' => 'Purwosari',
                 'jabatan' => 'Admin'
+            ],
+            [
+                'foto' => null,
+                'nama' => 'Siti Aisyah',
+                'username' => 'aisyah',
+                'password'=> Hash::make('aisyah'),
+                'email' => 'sitiaisyah4110@gmail.com',
+                'no_hp' => '083857129219',
+                'jenis_kelamin' => 'P',
+                'tanggal_lahir' => '2002-01-14',
+                'alamat' => 'Sukorejo',
+                'jabatan' => 'Admin'
             ]
         ];
         DB::table('users')->insert($dataItem);
