@@ -122,6 +122,7 @@ class KeuanganController extends Controller
     public function cetak_pdf(){
         $keuangan = Keuangan::all();
         $pdf = PDF::loadview('keuangan.keuangan_pdf',['keuangan'=>$keuangan]);
-        return $pdf->stream();
+        return $pdf->stream('laporan keuangan.pdf');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
     }
 }
