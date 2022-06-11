@@ -6,6 +6,7 @@ use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PegawaiController extends Controller
 {
@@ -90,7 +91,7 @@ class PegawaiController extends Controller
         $pegawai->foto_pegawai = $image_name;
 
         $pegawai->save();
-        
+
         Alert::success('Success','Data Pegawai Berhasil Ditambahkan');
         return redirect()->route('pegawai.index');
     }
@@ -179,5 +180,11 @@ class PegawaiController extends Controller
         Pegawai::find($nip)->delete();
         return redirect()->route('pegawai.index')
             -> with('success', 'Pegawai Berhasil Dihapus');
+    }
+
+    public function cetak_pdf(){
+        $pegawai = Pegawai::all() ;
+        $pdf = PDF::loadview('pegawai.pegawai_pdf',['pegawai'=>$pegawai])->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }
