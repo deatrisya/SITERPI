@@ -46,11 +46,11 @@
                         @foreach ($keuangan as $data)
                     <tr>
                             <td scope="row">{{ ++$i}}</td>
-                            <td>{{$data->tanggal}}</td>
+                            <td>{{date('d-F-Y', strtotime($data->tanggal))}}</td>
                             <td>{{$data->tipe}}</td>
                             <td>{{$data->tipeID}}</td>
-                            <td>{{$data->masuk}}</td>
-                            <td>{{$data->keluar}}</td>
+                            <td>Rp. {{number_format($data->masuk),2}},00</td>
+                            <td>Rp. {{number_format($data->keluar),2}},00</td>
                             <td>
                                 <form action="{{ route('keuangan.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('keuangan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
