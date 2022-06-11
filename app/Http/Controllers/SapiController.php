@@ -190,7 +190,7 @@ class SapiController extends Controller
     }
     public function cetak_pdf(){
         $sapi = Sapi::all() ;
-        $pdf = PDF::loadview('sapi.sapi_pdf',['sapi'=>$sapi]);
+        $pdf = PDF::loadview('sapi.sapi_pdf',['sapi'=>$sapi])->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 }
