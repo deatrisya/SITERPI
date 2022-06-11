@@ -38,11 +38,11 @@ class Sapi extends Model
         return \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->format('%y tahun, %m bulan dan %d hari');
     }
     public function getStatusUmurAttribute(){
-        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->m;
+        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diffInMonths(\Carbon\Carbon::now());
         // dd($umur);
-        if ($umur < 2) {
+        if ($umur < 3) {
             $status_umur = 'Anak';
-        } elseif ($umur >2 or $umur < 7) {
+        } elseif ($umur >=3 && $umur <= 7) {
             $status_umur = 'Muda';
         } else {
             $status_umur = 'Dewasa';
@@ -65,7 +65,7 @@ class Sapi extends Model
     public function getStatusBobotAttribute(){
         $jenis_kelamin = $this->jenis_kelamin;
         $bobot = $this->bobot;
-        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diff(\Carbon\Carbon::now())->m;
+        $umur = \Carbon\Carbon::parse($this->tanggal_lahir)->diffInMonths(\Carbon\Carbon::now());
 
        if($jenis_kelamin == 'Jantan') {
            if($umur < 2 && $bobot < 27) {
