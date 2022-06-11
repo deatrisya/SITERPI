@@ -35,12 +35,9 @@
     <script src="{{asset('admin/js/off-canvas.js')}}"></script>
     <script src="{{asset('admin/js/misc.js')}}"></script>
     <script src="{{asset('admin/js/dashboard.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
     @yield('js')
-    @yield('jo')
-    @yield('ro')
-    @yield('jp')
-    @yield('rp')
 </body>
 
 </html>
