@@ -21,6 +21,9 @@
                             <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
                         </form>
                    </div>
+                   <div class="d-flex flex-row-reverse float-right px-2">
+                    <a href="{{route('jenisobat.cetak_pdf')}}" target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
+                   </div>
                </div>
                 </div>
             </div>
@@ -54,7 +57,7 @@
                             <td>{{$data->nama_obat}}</td>
                             {{-- <td>{{$data->jumlah}}</td> --}}
                             <td>{{$data->satuan}}</td>
-                            <td>Rp {{$data->harga}}</td>
+                            <td>Rp. {{number_format($data->harga),2}},00</td>
                             <td>
                                 <form action="{{ route('jenisobat.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('jenisobat.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
