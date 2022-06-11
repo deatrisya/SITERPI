@@ -149,7 +149,6 @@ class RiwayatObatController extends Controller
             'obat_id' => 'required',
             'isi' => 'required|numeric',
             'status' => 'required',
-            // 'jumlah_unit' => 'required|numeric',
             'harga_satuan' => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
@@ -157,11 +156,16 @@ class RiwayatObatController extends Controller
         $riwayatobat -> obat_id = $request->obat_id;
         $riwayatobat -> isi = $request->isi;
         $riwayatobat -> status = $request->status;
-        // $riwayatobat -> jumlah_unit = $request->jumlah_unit;
         $riwayatobat -> harga_satuan = $request->harga_satuan;
         $riwayatobat -> total_harga = $request->total_harga;
         $riwayatobat->save();
 
+        if($request->status == 'Masuk') {
+            $keuangan = Keuangan::where('tipe','Obat')
+                -> where('tipeID',$id)->first();
+            $keuangan -> keluar = $request ->total_harga;
+            $keuangan->save();
+        }
         Alert::success('Success','Riwayat Obat Berhasil Diupdate');
         return redirect()->route('riwayatobat.index');
     }
