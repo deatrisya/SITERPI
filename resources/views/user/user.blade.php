@@ -53,7 +53,7 @@ User Data | SITERPI
                             <td>{{$data->email}}</td>
                             <td>{{$data->no_hp}}</td>
                             <td>{{$data->jenis_kelamin}}</td>
-                            <td>{{$data->tanggal_lahir}}</td>
+                            <td>{{date('d-F-Y', strtotime($data->tanggal_lahir))}}</td>
                             <td>{{$data->alamat}}</td>
                             <td>{{$data->jabatan}}</td>
                             <td>

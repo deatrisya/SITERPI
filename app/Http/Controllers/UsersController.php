@@ -146,7 +146,7 @@ class UsersController extends Controller
     public function cetak_pdf(){
         $user = User::all();
         // dd($user);
-        $pdf = PDF::loadview('user.user_cetakPdf',['user'=>$user]);
+        $pdf = PDF::loadview('user.user_cetakPdf',['user'=>$user])->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 }
