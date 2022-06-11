@@ -21,6 +21,9 @@
                             <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
                         </form>
                    </div>
+                   <div class="d-flex flex-row-reverse float-right px-2">
+                        <a href="{{route('jenispakan.cetak_pdf')}}" target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
+                   </div>
                </div>
                 </div>
             </div>
@@ -50,7 +53,7 @@
                         <tr>
                             <td scope="row">{{ ++$i}}</td>
                             <td>{{$data->jenis_pakan}}</td>
-                            <td>{{$data->harga}}</td>
+                            <td>Rp. {{number_format($data->harga),2}}</td>
                             <td>
                                 <form action="{{ route('jenispakan.destroy',  $data->id) }}" method="POST">
                                     <a class="btn btn-icons btn-primary" href="{{route('jenispakan.show', $data->id)}}"><i class="mdi mdi-eye"></i></a>
