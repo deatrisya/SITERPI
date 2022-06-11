@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Obat;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ObatController extends Controller
 {
@@ -123,5 +124,11 @@ class ObatController extends Controller
         Obat::find($id)->delete();
         Alert::success('Success','Data Obat Berhasil Dihapus');
         return redirect()->route('jenisobat.index');
+    }
+
+    public function cetak_pdf(){
+        $jenisObat = Obat::all() ;
+        $pdf = PDF::loadview('obat.jenisObat_pdf',['jenisObat'=>$jenisObat]);
+        return $pdf->stream();
     }
 }
