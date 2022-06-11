@@ -14,7 +14,7 @@
                         <a class="btn btn-orange" href="{{route('sapi.create')}}">+ Tambah Data</a>
                     </div>
                    </div>
-                   <div class="col-md-6 " >                      
+                   <div class="col-md-6 " >
                         <div class="float-right">
                             <form class="form-inline my-2 my-lg-0" action="{{url()->current()}}" method="GET">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{request('keyword')}}">
@@ -53,6 +53,7 @@
                             <th scope="col">Jenis Kelamin</th>
                             <th scope="col">Status Asal</th>
                             <th scope="col">Bobot</th>
+                            <th scope="col">Status Bobot</th>
                             <th scope="col">Harga</th>
                             <th scope="col">Kondisi</th>
                             <th scope="col">Keterangan</th>
@@ -72,6 +73,7 @@
                             <td>{{$data->jenis_kelamin}}</td>
                             <td>{{$data->status_asal}}</td>
                             <td>{{$data->bobot}} Kg</td>
+                            <td>{!! $data->status_bobot !!}</td>
                             <td>{{$data->harga}}</td>
                             <td>{{$data->kondisi}}</td>
                             <td>{{$data->keterangan}}</td>
