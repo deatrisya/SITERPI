@@ -21,6 +21,9 @@
                             <button class="btn btn-icons btn-orange" type="submit"><i class="mdi mdi-magnify"></i></button>
                         </form>
                    </div>
+                   <div class="d-flex flex-row-reverse float-right px-2">
+                    <a href="{{route('pegawai.cetak_pdf')}}" target="_blank" class="btn btn-icons btn-danger"> <i class="mdi mdi-file-document"></i> </a>
+                   </div>
                </div>
                 </div>
             </div>
@@ -61,12 +64,12 @@
                         <td>{{$data->nama}}</td>
                         <td>{{$data->jenis_kelamin}}</td>
                         <td>{{$data->tempat_lahir}}</td>
-                        <td>{{$data->tanggal_lahir}}</td>
+                        <td>{{date('d-F-Y', strtotime($data->tanggal_lahir))}}</td>
                         <td>{{$data->alamat}}</td>
                         <td>{{$data->no_telp}}</td>
                         <td>{{$data->jabatan}}</td>
-                        <td>{{$data->jam_kerja}}</td>
-                        <td>{{$data->gaji}}</td>
+                        <td>{{$data->jam_kerja}} jam </td>
+                        <td> Rp. {{number_format($data->gaji),2}}</td>
                         <td>
                             <form action="{{ route('pegawai.destroy',  $data->nip) }}" method="POST">
                                 <a class="btn btn-icons btn-primary" href="{{route('pegawai.show', $data->nip)}}"><i class="mdi mdi-eye"></i></a>
