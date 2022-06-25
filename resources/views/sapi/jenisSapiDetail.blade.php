@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Edit Jenis Sapi
+    Detail Jenis Sapi
 @endsection
 @section('content')
     <div class="mt-5 col-md-8 mx-auto">
         <div class="card ">
-            <h5 class="card-header bg-orange text-white">Edit Jenis Sapi</h5>
+            <h5 class="card-header bg-orange text-white">Detail Jenis Sapi</h5>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
