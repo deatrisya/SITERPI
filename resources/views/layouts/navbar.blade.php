@@ -8,7 +8,7 @@
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+        {{-- <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
           <li class="nav-item">
             <a href="#" class="nav-link">Schedule
               <span class="badge badge-primary ml-1">New</span>
@@ -22,9 +22,9 @@
             <a href="#" class="nav-link">
               <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
           </li>
-        </ul>
+        </ul> --}}
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <i class="mdi mdi-file-document-box"></i>
               <span class="count">7</span>
@@ -133,7 +133,7 @@
                 </div>
               </a>
             </div>
-          </li>
+          </li> --}}
           @if (Auth::user())
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
