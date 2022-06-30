@@ -242,8 +242,9 @@
             labels: labelSapi,
             datasets: [{
                 label: 'Data Sapi',
-                borderColor: ["rgb(255, 99, 132)","rgb(255, 159, 64)"],
                 backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(255, 159, 64, 0.2)'],
+                borderColor: ['rgb(255, 99, 132)','rgb(255, 159, 64)'],
+                borderWidth: 1,
                 data: datsapi,
                 fill: false
             }]
