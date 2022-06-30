@@ -85,7 +85,7 @@ class PegawaiController extends Controller
         $pegawai->gaji = $request->get('gaji');
 
         if ($request->file('foto_pegawai')){
-            $image_name = $request ->file('foto_pegawai')->store('images', 'public');
+            $image_name = $request ->file('foto_pegawai')->store('images','public');
         }
 
         $pegawai->foto_pegawai = $image_name;
@@ -142,9 +142,16 @@ class PegawaiController extends Controller
             'gaji' => 'required',
         ]);
         $pegawai = Pegawai::where('nip', $nip)->first();
+
+        if($request->hasFile('foto_pegawai')){
+            if($pegawai->foto_pegawai && file_exists(storage_path('app/public/'. $pegawai->foto_pegawai))){
+                Storage::delete('public/'.$pegawai->foto_pegawai);
+            }
+            $image_name = $request->file('foto_pegawai')->store('images','public');
+            $pegawai->foto_pegawai = $image_name;
+        }
+
         $pegawai->nip = $request->get('nip');
-        $image_name = $request->file('foto_pegawai')->store('images', 'public');
-        $pegawai->foto_pegawai = $image_name;
         $pegawai->nama = $request->get('nama');
         $pegawai->jenis_kelamin = $request->get('jenis_kelamin');
         $pegawai->tempat_lahir = $request->get('tempat_lahir');
@@ -155,16 +162,10 @@ class PegawaiController extends Controller
         $pegawai->jam_kerja = $request->get('jam_kerja');
         $pegawai->gaji = $request->get('gaji');
 
-        if($request->hasFile('foto_pegawai')){
-            if($pegawai->foto_pegawai && file_exists(storage_path('app/public/'. $pegawai->foto_pegawai))){
-                Storage::delete('public/'.$pegawai->foto_pegawai);
-            }
-            $image_name = $request->file('foto_pegawai')->store('images', 'public');
-            $pegawai->foto_pegawai = $image_name;
-        }
+
         $pegawai->save();
 
-        Alert::success('Success','Data Pegawai Berhasil Ditambahkan');
+        Alert::success('Success','Data Pegawai Berhasil Diupdate');
         return redirect()->route('pegawai.index');
     }
 

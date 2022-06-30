@@ -31,7 +31,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="foto_pegawai">Foto Pegawai</label>
-                            <input type="file" class="form-control" aria-describedby="emailHelp" placeholder="Foto Pegawai" name="foto_pegawai" required value="{{$pegawai->foto_pegawai}}">
+                            <input type="file" class="form-control" aria-describedby="emailHelp" placeholder="Foto Pegawai" name="foto_pegawai">
                             <img width="150px" src="{{asset('storage/'. $pegawai->foto_pegawai)}}" >
                           </div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tempat Lahir</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Tempat Lahir" name="tempat_lahir" required value="{{$pegawai->tempat_lahir}}"> 
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Tempat Lahir" name="tempat_lahir" required value="{{$pegawai->tempat_lahir}}">
                           </div>
                     </div>
                     <div class="col-md-6">
