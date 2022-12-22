@@ -13,6 +13,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,5 +62,12 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('getRiwayatPakan/{id}',[RiwayatPakanController::class,'getHarga']);
     Route::get('getRiwayatObat/{id}',[RiwayatObatController::class,'getHarga']);
 
+    Route::get('/migrate', function () {
+        Artisan::call('migrate:fresh');
+        Artisan::call('db:seed');
+    });
 
+    Route::get('/cache-clear', function () {
+        Artisan::call('cache:clear');
+    });
 });

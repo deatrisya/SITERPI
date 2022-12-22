@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "steadfast-leaf-372404",
+    "private_key_id": "e6e975bf93fe6130ef9811d20ff0881d781fc2fe",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDVSAsE6FGfuVPi\nWsiRzJfpK+APly9TDl80ViyNpF0IFtKTSyd8rQ2E3dwh+doFr/QT7TmpHoO6PU60\noOH3NiTk170vJDWyfKNUjcEjF/RS9hryXTEj2uSFzhsKg9HZ+9FA/dIPhBP3BFZo\n3nHrsFA+pojte125K1encpXn5Sur1bpWxHJJltgwZk20yPVaBAgJxyUD+06Mt9RR\njPWUBJkMj2jP0pwvm/pAOTbQjwtkHYHVRPMI83jgefPn60zywCp4AUuTDfCyrKpW\n8gDCz85X1gFxZLqkiKa26iT8To1QHJ7xOuYnQMVTnCenf1w0c2/WlznSXjqMtv8T\nbT8M4S+3AgMBAAECggEAIYKdQJsj3/2lYWY0JzxHDfq3zJtLczhJ2xZDD8ooV9IG\nKeBgBuXFvv+Ay9HO4J/hsJPQQHMr7UIesKCqgEYAi/gdoF+HFFEi9HEFTHdCCxrh\n5vyfcOu+hgt5EjDd8uru2NBIhemRnXkP/pAcxBRCt2VBFFcSxbo6nnORfAr0zp2P\nb+1uCRkjSTbaOnZ5m/6MPpaGzE7osqCtiM1SAKASCeR0hltuewlySbYUYUSzekYi\nEB9zgUts4VzOr6kBCtNVAHkPmiV5KURWI6GnDjms0uqSB/Rb8vnMtOoLIHgFgyL0\ng1si3k6TGPsmuZi28ID8mprm8MG5/3BMW8s/I7j8WQKBgQD8ng17YfanTiuFhg+Z\nozJ/u66EJwFB92DqmS2ZioP3I48trs2cM+VVrx+dn5kPUwkMmbM+XV62dJL37GlM\nKjc+D1QHi5LEE9eAavGzDqCTZ1www+hE8giZqPe+DnW7CuhWfsshoo4I2E9Qid3h\n4FjZe6BGlbYqRgt6JvnAZNNRMwKBgQDYIyaLVyAxnu0A+8PfeBBaDyCfzFoDyzrq\nLj64mSaqqZEQeJuqUsfWyIhBUlkW3j9itFWGaLreMnrPazf/WHlqA7yz83c2siNE\n0qwhQRtW9/MKqrEk1sePlcWmcBGBnYaiI9U46M4MkmpPATP5V1AWOo6xHRDPx+sL\nsjXQk4PvbQKBgQCJJ07ulEuUno5mmljR85cxXrbrrTmzlRobhTsKx/fKMJZGGUgs\n7Mgw8znZHJO/jDe3jaOR0qPfr/8zeDnbTnhby3q19gOjTZqNcIL10pVAMrgNCfCL\nrlUZCHIp0DP/b3ahr4meI2G2T6sQcSn0vxe+TK7CY/pZjVoh4hNrb9KDnQKBgBam\neF+Z3dHVadj0iW5d0rjdZPnaHITRQ3dPKVuHETpJUt57BTUwP6kOktjlnFh9Kf9a\nDqxrRUoL2DrsbY3g47hsc9YX6aJdwLxxp4BEpmzSxzGS+cV2jKtLcs8iZ3NB4t4T\nC0FPhGhk36cv5RZ4Q/hQYqvE9AISXVt4bZNSIj1xAoGBAJo5XhgZzIY+YD1/V5q6\nq8mbC/83PEWSX63N9K32ItoErP434hwsVokqBxc7bwLh8wPWaBFfS1szyGJzXvUm\nOoeMXY9Sf2+Z2zcaxgckFlTlRQpib/b1xEujBwwGeWYcdrNlh9B86+CPvaDX08aD\nSWROFrryxO3KiWb44mr2kpsd\n-----END PRIVATE KEY-----\n",
+    "client_email": "proyek-siterpi@steadfast-leaf-372404.iam.gserviceaccount.com",
+    "client_id": "112467476098249813539",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/proyek-siterpi%40steadfast-leaf-372404.iam.gserviceaccount.com"
+  }
